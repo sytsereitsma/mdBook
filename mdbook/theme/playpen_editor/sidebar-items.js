@@ -1,1 +1,0 @@
-initSidebarItems({"static":[["ACE_JS",""],["JS",""],["MODE_RUST_JS",""],["THEME_DAWN_JS",""],["THEME_TOMORROW_NIGHT_JS",""]]});

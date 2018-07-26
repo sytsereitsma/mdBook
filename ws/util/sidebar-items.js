@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Timeout",""],["Token","Associates readiness notifications with [`Evented`] handles."]],"type":[["Slab","A Slab allocator for associating tokens to data."]]});

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Syntax highlighting - mdBook Documentation</title>
+        <title>Theme - mdBook Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="Create book from markdown files. Like Gitbook but implemented in Rust">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +70,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="../../index.html"><strong aria-hidden="true">1.</strong> mdBook</a></li><li><a href="../../cli/index.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li><a href="../../cli/init.html"><strong aria-hidden="true">2.1.</strong> init</a></li><li><a href="../../cli/build.html"><strong aria-hidden="true">2.2.</strong> build</a></li><li><a href="../../cli/watch.html"><strong aria-hidden="true">2.3.</strong> watch</a></li><li><a href="../../cli/serve.html"><strong aria-hidden="true">2.4.</strong> serve</a></li><li><a href="../../cli/test.html"><strong aria-hidden="true">2.5.</strong> test</a></li><li><a href="../../cli/clean.html"><strong aria-hidden="true">2.6.</strong> clean</a></li></ol></li><li><a href="../../format/index.html"><strong aria-hidden="true">3.</strong> Format</a></li><li><ol class="section"><li><a href="../../format/summary.html"><strong aria-hidden="true">3.1.</strong> SUMMARY.md</a></li><li><a href="../../format/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li><a href="../../format/theme/index.html"><strong aria-hidden="true">3.3.</strong> Theme</a></li><li><ol class="section"><li><a href="../../format/theme/index-hbs.html"><strong aria-hidden="true">3.3.1.</strong> index.hbs</a></li><li><a href="../../format/theme/syntax-highlighting.html" class="active"><strong aria-hidden="true">3.3.2.</strong> Syntax highlighting</a></li><li><a href="../../format/theme/editor.html"><strong aria-hidden="true">3.3.3.</strong> Editor</a></li></ol></li><li><a href="../../format/mathjax.html"><strong aria-hidden="true">3.4.</strong> MathJax Support</a></li><li><a href="../../format/mdbook.html"><strong aria-hidden="true">3.5.</strong> mdBook specific features</a></li></ol></li><li><a href="../../continuous-integration.html"><strong aria-hidden="true">4.</strong> Continuous Integration</a></li><li><a href="../../for_developers/index.html"><strong aria-hidden="true">5.</strong> For Developers</a></li><li><ol class="section"><li><a href="../../for_developers/preprocessors.html"><strong aria-hidden="true">5.1.</strong> Preprocessors</a></li><li><a href="../../for_developers/backends.html"><strong aria-hidden="true">5.2.</strong> Alternate Backends</a></li><li class="spacer"></li></ol></li><li><a href="../../misc/contributors.html">Contributors</a></li></ol>
+            <ol class="chapter"><li><a href="../../index.html"><strong aria-hidden="true">1.</strong> mdBook</a></li><li><a href="../../cli/index.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li><a href="../../cli/init.html"><strong aria-hidden="true">2.1.</strong> init</a></li><li><a href="../../cli/build.html"><strong aria-hidden="true">2.2.</strong> build</a></li><li><a href="../../cli/watch.html"><strong aria-hidden="true">2.3.</strong> watch</a></li><li><a href="../../cli/serve.html"><strong aria-hidden="true">2.4.</strong> serve</a></li><li><a href="../../cli/test.html"><strong aria-hidden="true">2.5.</strong> test</a></li><li><a href="../../cli/clean.html"><strong aria-hidden="true">2.6.</strong> clean</a></li></ol></li><li><a href="../../format/index.html"><strong aria-hidden="true">3.</strong> Format</a></li><li><ol class="section"><li><a href="../../format/summary.html"><strong aria-hidden="true">3.1.</strong> SUMMARY.md</a></li><li><a href="../../format/config.html"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li><a href="../../format/theme/index.html" class="active"><strong aria-hidden="true">3.3.</strong> Theme</a></li><li><ol class="section"><li><a href="../../format/theme/index-hbs.html"><strong aria-hidden="true">3.3.1.</strong> index.hbs</a></li><li><a href="../../format/theme/syntax-highlighting.html"><strong aria-hidden="true">3.3.2.</strong> Syntax highlighting</a></li><li><a href="../../format/theme/editor.html"><strong aria-hidden="true">3.3.3.</strong> Editor</a></li></ol></li><li><a href="../../format/mathjax.html"><strong aria-hidden="true">3.4.</strong> MathJax Support</a></li><li><a href="../../format/mdbook.html"><strong aria-hidden="true">3.5.</strong> mdBook specific features</a></li></ol></li><li><a href="../../continuous-integration.html"><strong aria-hidden="true">4.</strong> Continuous Integration</a></li><li><a href="../../for_developers/index.html"><strong aria-hidden="true">5.</strong> For Developers</a></li><li><ol class="section"><li><a href="../../for_developers/preprocessors.html"><strong aria-hidden="true">5.1.</strong> Preprocessors</a></li><li><a href="../../for_developers/backends.html"><strong aria-hidden="true">5.2.</strong> Alternate Backends</a></li><li class="spacer"></li></ol></li><li><a href="../../misc/contributors.html">Contributors</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -134,60 +134,37 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#syntax-highlighting" id="syntax-highlighting"><h1>Syntax Highlighting</h1></a>
-<p>For syntax highlighting I use <a href="https://highlightjs.org">Highlight.js</a> with a custom theme.</p>
-<p>Automatic language detection has been turned off, so you will probably want to
-specify the programming language you use like this</p>
-<pre><code class="language-markdown">```rust
-fn main() {
-    // Some code
-}
-```</code></pre>
-<a class="header" href="#custom-theme" id="custom-theme"><h2>Custom theme</h2></a>
-<p>Like the rest of the theme, the files used for syntax highlighting can be overridden with your own.</p>
+                        <a class="header" href="#theme" id="theme"><h1>Theme</h1></a>
+<p>The default renderer uses a <a href="http://handlebarsjs.com/">handlebars</a> template to render your markdown files and comes with a default theme
+included in the mdBook binary.</p>
+<p>The theme is totally customizable, you can selectively replace every file from the theme by your own by adding a
+<code>theme</code> directory next to <code>src</code> folder in your project root. Create a new file with the name of the file you want to override
+and now that file will be used instead of the default file.</p>
+<p>Here are the files you can override:</p>
 <ul>
-<li><strong><em>highlight.js</em></strong> normally you shouldn't have to overwrite this file, unless you want to use a more recent version.</li>
-<li><strong><em>highlight.css</em></strong> theme used by highlight.js for syntax highlighting.</li>
+<li><strong><em>index.hbs</em></strong> is the handlebars template.</li>
+<li><strong><em>book.css</em></strong> is the style used in the output. If you want to change the design of your book, this is probably the file you want to modify. Sometimes in conjunction with <code>index.hbs</code> when you want to radically change the layout.</li>
+<li><strong><em>book.js</em></strong> is mostly used to add client side functionality, like hiding / un-hiding the sidebar, changing the theme, ...</li>
+<li><strong><em>highlight.js</em></strong> is the JavaScript that is used to highlight code snippets, you should not need to modify this.</li>
+<li><strong><em>highlight.css</em></strong> is the theme used for the code highlighting</li>
+<li><strong><em>favicon.png</em></strong> the favicon that will be used</li>
 </ul>
-<p>If you want to use another theme for <code>highlight.js</code> download it from their website, or make it yourself,
-rename it to <code>highlight.css</code> and put it in <code>src/theme</code> (or the equivalent if you changed your source folder)</p>
-<p>Now your theme will be used instead of the default theme.</p>
-<a class="header" href="#hiding-code-lines" id="hiding-code-lines"><h2>Hiding code lines</h2></a>
-<p>There is a feature in mdBook that let's you hide code lines by prepending them with a <code>#</code>.</p>
-<pre><code class="language-bash"># fn main() {
-    let x = 5;
-    let y = 6;
-
-    println!(&quot;{}&quot;, x + y);
-# }
-</code></pre>
-<p>Will render as</p>
-<pre><pre class="playpen"><code class="language-rust"># fn main() {
-    let x = 5;
-    let y = 7;
-
-    println!(&quot;{}&quot;, x + y);
-# }
-</code></pre></pre>
-<p><strong>At the moment, this only works for code examples that are annotated with <code>rust</code>. Because it would collide with semantics of some programming languages. In the future, we want to make this configurable through the <code>book.toml</code> so that everyone can benefit from it.</strong></p>
-<a class="header" href="#improve-default-theme" id="improve-default-theme"><h2>Improve default theme</h2></a>
-<p>If you think the default theme doesn't look quite right for a specific language, or could be improved.
-Feel free to <a href="https://github.com/rust-lang-nursery/mdBook/issues">submit a new issue</a> explaining what you have in mind and I will take a look at it.</p>
-<p>You could also create a pull-request with the proposed improvements.</p>
-<p>Overall the theme should be light and sober, without to many flashy colors.</p>
+<p>Generally, when you want to tweak the theme, you don't need to override all the files. If you only need changes in the stylesheet,
+there is no point in overriding all the other files. Because custom files take precedence over built-in ones, they will not get updated with new fixes / features.</p>
+<p><strong>Note:</strong> When you override a file, it is possible that you break some functionality. Therefore I recommend to use the file from the default theme as template and only add / modify what you need. You can copy the default theme into your source directory automatically by using <code>mdbook init --theme</code> just remove the files you don't want to override.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../../format/theme/index-hbs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../format/config.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../../format/theme/editor.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../format/theme/index-hbs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -199,13 +176,13 @@ Feel free to <a href="https://github.com/rust-lang-nursery/mdBook/issues">submit
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../../format/theme/index-hbs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../../format/config.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="../../format/theme/editor.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../../format/theme/index-hbs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

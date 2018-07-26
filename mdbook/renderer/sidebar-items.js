@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["CmdRenderer","A generic renderer which will shell out to an arbitrary executable."],["HtmlHandlebars",""],["RenderContext","The context provided to all renderers."]],"trait":[["Renderer","An arbitrary `mdbook` backend."]]});

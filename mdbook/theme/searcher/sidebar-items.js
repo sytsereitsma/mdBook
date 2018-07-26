@@ -1,1 +1,0 @@
-initSidebarItems({"static":[["ELASTICLUNR_JS",""],["JS",""],["MARK_JS",""]]});

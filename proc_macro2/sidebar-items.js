@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["Delimiter",""],["Spacing",""],["TokenNode",""]],"struct":[["LexError",""],["Literal",""],["Span",""],["Term",""],["TokenStream",""],["TokenTree",""],["TokenTreeIter",""]]});

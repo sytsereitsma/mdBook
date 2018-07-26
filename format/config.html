@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible">
+<html lang="en" class="sidebar-visible no-js">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -9,44 +9,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="../">
-
-        <link rel="stylesheet" href="book.css">
+        <link rel="stylesheet" href="../book.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <link rel="shortcut icon" href="favicon.png">
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
 
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        <!-- Custom theme -->
+        <!-- Custom theme stylesheets -->
         
 
         
         <!-- MathJax -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <noscript>
-            <style type="text/css">
-                .javascript-only {
-                    display: none;
-                }
-            </style>
-        </noscript>
 
     </head>
     <body class="light">
@@ -72,7 +54,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
             if (theme === null || theme === undefined) { theme = 'light'; }
             document.body.className = theme;
-            document.querySelector('html').className = theme;
+            document.querySelector('html').className = theme + ' js';
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -88,7 +70,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="README.html"><strong aria-hidden="true">1.</strong> mdBook</a></li><li><a href="cli/cli-tool.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li><a href="cli/init.html"><strong aria-hidden="true">2.1.</strong> init</a></li><li><a href="cli/build.html"><strong aria-hidden="true">2.2.</strong> build</a></li><li><a href="cli/watch.html"><strong aria-hidden="true">2.3.</strong> watch</a></li><li><a href="cli/serve.html"><strong aria-hidden="true">2.4.</strong> serve</a></li><li><a href="cli/test.html"><strong aria-hidden="true">2.5.</strong> test</a></li><li><a href="cli/clean.html"><strong aria-hidden="true">2.6.</strong> clean</a></li></ol></li><li><a href="format/format.html"><strong aria-hidden="true">3.</strong> Format</a></li><li><ol class="section"><li><a href="format/summary.html"><strong aria-hidden="true">3.1.</strong> SUMMARY.md</a></li><li><a href="format/config.html" class="active"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li><a href="format/theme/theme.html"><strong aria-hidden="true">3.3.</strong> Theme</a></li><li><ol class="section"><li><a href="format/theme/index-hbs.html"><strong aria-hidden="true">3.3.1.</strong> index.hbs</a></li><li><a href="format/theme/syntax-highlighting.html"><strong aria-hidden="true">3.3.2.</strong> Syntax highlighting</a></li><li><a href="format/theme/editor.html"><strong aria-hidden="true">3.3.3.</strong> Editor</a></li></ol></li><li><a href="format/mathjax.html"><strong aria-hidden="true">3.4.</strong> MathJax Support</a></li><li><a href="format/mdbook.html"><strong aria-hidden="true">3.5.</strong> mdBook specific features</a></li></ol></li><li><a href="for_developers/index.html"><strong aria-hidden="true">4.</strong> For Developers</a></li><li><ol class="section"><li><a href="for_developers/preprocessors.html"><strong aria-hidden="true">4.1.</strong> Preprocessors</a></li><li><a href="for_developers/backends.html"><strong aria-hidden="true">4.2.</strong> Alternate Backends</a></li><li class="spacer"></li></ol></li><li><a href="misc/contributors.html">Contributors</a></li></ol>
+            <ol class="chapter"><li><a href="../index.html"><strong aria-hidden="true">1.</strong> mdBook</a></li><li><a href="../cli/index.html"><strong aria-hidden="true">2.</strong> Command Line Tool</a></li><li><ol class="section"><li><a href="../cli/init.html"><strong aria-hidden="true">2.1.</strong> init</a></li><li><a href="../cli/build.html"><strong aria-hidden="true">2.2.</strong> build</a></li><li><a href="../cli/watch.html"><strong aria-hidden="true">2.3.</strong> watch</a></li><li><a href="../cli/serve.html"><strong aria-hidden="true">2.4.</strong> serve</a></li><li><a href="../cli/test.html"><strong aria-hidden="true">2.5.</strong> test</a></li><li><a href="../cli/clean.html"><strong aria-hidden="true">2.6.</strong> clean</a></li></ol></li><li><a href="../format/index.html"><strong aria-hidden="true">3.</strong> Format</a></li><li><ol class="section"><li><a href="../format/summary.html"><strong aria-hidden="true">3.1.</strong> SUMMARY.md</a></li><li><a href="../format/config.html" class="active"><strong aria-hidden="true">3.2.</strong> Configuration</a></li><li><a href="../format/theme/index.html"><strong aria-hidden="true">3.3.</strong> Theme</a></li><li><ol class="section"><li><a href="../format/theme/index-hbs.html"><strong aria-hidden="true">3.3.1.</strong> index.hbs</a></li><li><a href="../format/theme/syntax-highlighting.html"><strong aria-hidden="true">3.3.2.</strong> Syntax highlighting</a></li><li><a href="../format/theme/editor.html"><strong aria-hidden="true">3.3.3.</strong> Editor</a></li></ol></li><li><a href="../format/mathjax.html"><strong aria-hidden="true">3.4.</strong> MathJax Support</a></li><li><a href="../format/mdbook.html"><strong aria-hidden="true">3.5.</strong> mdBook specific features</a></li></ol></li><li><a href="../continuous-integration.html"><strong aria-hidden="true">4.</strong> Continuous Integration</a></li><li><a href="../for_developers/index.html"><strong aria-hidden="true">5.</strong> For Developers</a></li><li><ol class="section"><li><a href="../for_developers/preprocessors.html"><strong aria-hidden="true">5.1.</strong> Preprocessors</a></li><li><a href="../for_developers/backends.html"><strong aria-hidden="true">5.2.</strong> Alternate Backends</a></li><li class="spacer"></li></ol></li><li><a href="../misc/contributors.html">Contributors</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -97,7 +79,7 @@
                 
                 <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
-                        <div class="left-buttons javascript-only">
+                        <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                                 <i class="fa fa-bars"></i>
                             </button>
@@ -121,7 +103,7 @@
                         <h1 class="menu-title">mdBook Documentation</h1> 
 
                         <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                         </div>
@@ -129,13 +111,15 @@
                 </div>
 
                 
-                <div id="searchbar-outer" class="searchbar-outer">
-                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                </div>
-                <div id="searchresults-outer" class="searchresults-outer">
-                    <div class="searchresults-header" id="searchresults-header"></div>
-                    <ul id="searchresults">
-                    </ul>
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
                 </div>
                 
 
@@ -150,7 +134,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="format/config.html#configuration" id="configuration"><h1>Configuration</h1></a>
+                        <a class="header" href="#configuration" id="configuration"><h1>Configuration</h1></a>
 <p>You can configure the parameters for your book in the <strong><em>book.toml</em></strong> file.</p>
 <p>Here is an example of what a <strong><em>book.toml</em></strong> file might look like:</p>
 <pre><code class="language-toml">[book]
@@ -168,10 +152,10 @@ additional-css = [&quot;custom.css&quot;]
 [output.html.search]
 limit-results = 15
 </code></pre>
-<a class="header" href="format/config.html#supported-configuration-options" id="supported-configuration-options"><h2>Supported configuration options</h2></a>
+<a class="header" href="#supported-configuration-options" id="supported-configuration-options"><h2>Supported configuration options</h2></a>
 <p>It is important to note that <strong>any</strong> relative path specified in the in the configuration will
 always be taken relative from the root of the book where the configuration file is located.</p>
-<a class="header" href="format/config.html#general-metadata" id="general-metadata"><h3>General metadata</h3></a>
+<a class="header" href="#general-metadata" id="general-metadata"><h3>General metadata</h3></a>
 <p>This is general information about your book.</p>
 <ul>
 <li><strong>title:</strong> The title of the book</li>
@@ -189,7 +173,7 @@ authors = [&quot;John Doe&quot;, &quot;Jane Doe&quot;]
 description = &quot;The example book covers examples.&quot;
 src = &quot;my-src&quot;  # the source files will be found in `root/my-src` instead of `root/src`
 </code></pre>
-<a class="header" href="format/config.html#build-options" id="build-options"><h3>Build options</h3></a>
+<a class="header" href="#build-options" id="build-options"><h3>Build options</h3></a>
 <p>This controls the build process of your book.</p>
 <ul>
 <li><strong>build-dir:</strong> The directory to put the rendered book in. By default this is
@@ -198,13 +182,20 @@ src = &quot;my-src&quot;  # the source files will be found in `root/my-src` inst
 will be created when the book is built (i.e. <code>create-missing = true</code>). If this
 is <code>false</code> then the build process will instead exit with an error if any files
 do not exist.</li>
+<li><strong>preprocess:</strong> Specify which preprocessors to be applied. Default is <code>[&quot;links&quot;, &quot;index&quot;]</code>. To disable default preprocessors, pass an empty array <code>[]</code> in.</li>
+</ul>
+<p>The following preprocessors are available and included by default:</p>
+<ul>
+<li><code>links</code>: Expand the <code>{{# playpen}}</code> and <code>{{# include}}</code> handlebars helpers in a chapter.</li>
+<li><code>index</code>: Convert all chapter files named <code>README.md</code> into <code>index.md</code>. That is to say, all <code>README.md</code> would be rendered to an index file <code>index.html</code> in the rendered book.</li>
 </ul>
 <p><strong>book.toml</strong></p>
 <pre><code class="language-toml">[build]
 build-dir = &quot;build&quot;
 create-missing = false
+preprocess = [&quot;links&quot;, &quot;index&quot;]
 </code></pre>
-<a class="header" href="format/config.html#html-renderer-options" id="html-renderer-options"><h3>HTML renderer options</h3></a>
+<a class="header" href="#html-renderer-options" id="html-renderer-options"><h3>HTML renderer options</h3></a>
 <p>The HTML renderer has a couple of options as well. All the options for the
 renderer need to be specified under the TOML table <code>[output.html]</code>.</p>
 <p>The following configuration options are available:</p>
@@ -239,6 +230,7 @@ Defaults to <code>true</code>.</li>
 </ul>
 <p>Available configuration options for the <code>[output.html.search]</code> table:</p>
 <ul>
+<li><strong>enable:</strong> Enables the search feature. Defaults to <code>true</code>.</li>
 <li><strong>limit-results:</strong> The maximum number of search results. Defaults to <code>30</code>.</li>
 <li><strong>teaser-word-count:</strong> The number of words used for a search result teaser.
 Defaults to <code>30</code>.</li>
@@ -266,6 +258,11 @@ title = &quot;Example book&quot;
 authors = [&quot;John Doe&quot;, &quot;Jane Doe&quot;]
 description = &quot;The example book covers examples.&quot;
 
+[build]
+build-dir = &quot;book&quot;
+create-missing = true
+preprocess = [&quot;links&quot;, &quot;index&quot;]
+
 [output.html]
 theme = &quot;my-theme&quot;
 curly-quotes = true
@@ -288,8 +285,9 @@ boost-hierarchy = 1
 boost-paragraph = 1
 expand = true
 heading-split-level = 3
+copy-js = true
 </code></pre>
-<a class="header" href="format/config.html#environment-variables" id="environment-variables"><h2>Environment Variables</h2></a>
+<a class="header" href="#environment-variables" id="environment-variables"><h2>Environment Variables</h2></a>
 <p>All configuration values can be overridden from the command line by setting the
 corresponding environment variable. Because many operating systems restrict
 environment variables to be alphanumeric characters or <code>_</code>, the configuration
@@ -327,13 +325,13 @@ from a script or CI, where it sometimes isn't possible to update the
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="format/summary.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../format/summary.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="format/theme/theme.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../format/theme/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -345,13 +343,13 @@ from a script or CI, where it sometimes isn't possible to update the
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="format/summary.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../format/summary.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="format/theme/theme.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../format/theme/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -359,45 +357,37 @@ from a script or CI, where it sometimes isn't possible to update the
 
         </div>
 
+        
 
-        <!-- Local fallback for Font Awesome -->
+        
+
+        
+        <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        
+        <script src="../searchindex.js" type="text/javascript" charset="utf-8"></script>
         <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
+            var path_to_root = "../";
         </script>
-
+        
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
         
 
-        
-        <script src="ace.js" type="text/javascript" charset="utf-8"></script>
-        <script src="editor.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mode-rust.js" type="text/javascript" charset="utf-8"></script>
-        <script src="theme-dawn.js" type="text/javascript" charset="utf-8"></script>
-        <script src="theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
-        
-
-        
-        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
-        
-        
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
-        
-
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
         
 
     </body>
