@@ -210,8 +210,8 @@ fn count_words(ch: &amp;Chapter) -&gt; usize {
 }
 </code></pre></pre>
 <a class="header" href="#enabling-the-backend" id="enabling-the-backend"><h2>Enabling the Backend</h2></a>
-<p>Now we've got the basics running, we want to actually use it. First, install
-the program.</p>
+<p>Now we've got the basics running, we want to actually use it. First, install the
+program.</p>
 <pre><code>$ cargo install
 </code></pre>
 <p>Then <code>cd</code> to the particular book you'd like to count the words of and update its
@@ -225,12 +225,11 @@ the program.</p>
 
 + [output.wordcount]
 </code></pre>
-<p>When it loads a book into memory, <code>mdbook</code> will inspect your <code>book.toml</code> file
-to try and figure out which backends to use by looking for all <code>output.*</code>
-tables. If none are provided it'll fall back to using the default HTML
-renderer.</p>
-<p>Notably, this means if you want to add your own custom backend you'll also
-need to make sure to add the HTML backend, even if its table just stays empty.</p>
+<p>When it loads a book into memory, <code>mdbook</code> will inspect your <code>book.toml</code> file to
+try and figure out which backends to use by looking for all <code>output.*</code> tables.
+If none are provided it'll fall back to using the default HTML renderer.</p>
+<p>Notably, this means if you want to add your own custom backend you'll also need
+to make sure to add the HTML backend, even if its table just stays empty.</p>
 <p>Now you just need to build your book like normal, and everything should <em>Just
 Work</em>.</p>
 <pre><code>$ mdbook build
@@ -273,13 +272,13 @@ arguments or be an interpreted script), you can use the <code>command</code> fie
 </code></pre>
 <a class="header" href="#configuration" id="configuration"><h2>Configuration</h2></a>
 <p>Now imagine you don't want to count the number of words on a particular chapter
-(it might be generated text/code, etc). The canonical way to do this is via
-the usual <code>book.toml</code> configuration file by adding items to your <code>[output.foo]</code>
+(it might be generated text/code, etc). The canonical way to do this is via the
+usual <code>book.toml</code> configuration file by adding items to your <code>[output.foo]</code>
 table.</p>
 <p>The <code>Config</code> can be treated roughly as a nested hashmap which lets you call
 methods like <code>get()</code> to access the config's contents, with a
-<code>get_deserialized()</code> convenience method for retrieving a value and
-automatically deserializing to some arbitrary type <code>T</code>.</p>
+<code>get_deserialized()</code> convenience method for retrieving a value and automatically
+deserializing to some arbitrary type <code>T</code>.</p>
 <p>To implement this, we'll create our own serializable <code>WordcountConfig</code> struct
 which will encapsulate all configuration for this backend.</p>
 <p>First add <code>serde</code> and <code>serde_derive</code> to your <code>Cargo.toml</code>,</p>
@@ -401,14 +400,14 @@ init: 283
 init has an odd number of words!
 2018-01-16 21:21:39 [ERROR] (mdbook::renderer): Renderer exited with non-zero return code.
 2018-01-16 21:21:39 [ERROR] (mdbook::utils): Error: Rendering failed
-2018-01-16 21:21:39 [ERROR] (mdbook::utils): 	Caused By: The &quot;mdbook-wordcount&quot; renderer failed
+2018-01-16 21:21:39 [ERROR] (mdbook::utils):    Caused By: The &quot;mdbook-wordcount&quot; renderer failed
 </code></pre>
 <p>As you've probably already noticed, output from the plugin's subprocess is
-immediately passed through to the user. It is encouraged for plugins to
-follow the &quot;rule of silence&quot; and only generate output when necessary (e.g. an
-error in generation or a warning).</p>
-<p>All environment variables are passed through to the backend, allowing you to
-use the usual <code>RUST_LOG</code> to control logging verbosity.</p>
+immediately passed through to the user. It is encouraged for plugins to follow
+the &quot;rule of silence&quot; and only generate output when necessary (e.g. an error in
+generation or a warning).</p>
+<p>All environment variables are passed through to the backend, allowing you to use
+the usual <code>RUST_LOG</code> to control logging verbosity.</p>
 <a class="header" href="#wrapping-up" id="wrapping-up"><h2>Wrapping Up</h2></a>
 <p>Although contrived, hopefully this example was enough to show how you'd create
 an alternate backend for <code>mdbook</code>. If you feel it's missing something, don't

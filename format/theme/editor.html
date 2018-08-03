@@ -140,11 +140,14 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#editor" id="editor"><h1>Editor</h1></a>
-<p>In addition to providing runnable code playpens, mdBook optionally allows them to be editable. In order to enable editable code blocks, the following needs to be added to the <strong><em>book.toml</em></strong>:</p>
+<p>In addition to providing runnable code playpens, mdBook optionally allows them
+to be editable. In order to enable editable code blocks, the following needs to
+be added to the <strong><em>book.toml</em></strong>:</p>
 <pre><code class="language-toml">[output.html.playpen]
 editable = true
 </code></pre>
-<p>To make a specific block available for editing, the attribute <code>editable</code> needs to be added to it:</p>
+<p>To make a specific block available for editing, the attribute <code>editable</code> needs
+to be added to it:</p>
 <pre><code class="language-markdown">```rust,editable
 fn main() {
     let number = 5;
@@ -159,12 +162,15 @@ fn main() {
 </code></pre></pre>
 <p>Note the new <code>Undo Changes</code> button in the editable playpens.</p>
 <a class="header" href="#customizing-the-editor" id="customizing-the-editor"><h2>Customizing the Editor</h2></a>
-<p>By default, the editor is the <a href="https://ace.c9.io/">Ace</a> editor, but, if desired, the functionality may be overriden by providing a different folder:</p>
+<p>By default, the editor is the <a href="https://ace.c9.io/">Ace</a> editor, but, if desired,
+the functionality may be overriden by providing a different folder:</p>
 <pre><code class="language-toml">[output.html.playpen]
 editable = true
 editor = &quot;/path/to/editor&quot;
 </code></pre>
-<p>Note that for the editor changes to function correctly, the <code>book.js</code> inside of the <code>theme</code> folder will need to be overriden as it has some couplings with the default Ace editor.</p>
+<p>Note that for the editor changes to function correctly, the <code>book.js</code> inside of
+the <code>theme</code> folder will need to be overriden as it has some couplings with the
+default Ace editor.</p>
 
                     </main>
 

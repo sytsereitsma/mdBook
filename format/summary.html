@@ -140,37 +140,43 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#summarymd" id="summarymd"><h1>SUMMARY.md</h1></a>
-<p>The summary file is used by mdBook to know what chapters to include,
-in what order they should appear, what their hierarchy is and where the source files are.
-Without this file, there is no book.</p>
+<p>The summary file is used by mdBook to know what chapters to include, in what
+order they should appear, what their hierarchy is and where the source files
+are. Without this file, there is no book.</p>
 <p>Even though <code>SUMMARY.md</code> is a markdown file, the formatting is very strict to
 allow for easy parsing. Let's see how you should format your <code>SUMMARY.md</code> file.</p>
 <a class="header" href="#allowed-elements" id="allowed-elements"><h4>Allowed elements</h4></a>
 <ol>
 <li>
-<p><strong><em>Title</em></strong> It's common practice to begin with a title, generally
-<code class="language-markdown"># Summary</code>.
-But it is not mandatory, the parser just ignores it. So you can too
-if you feel like it.</p>
+<p><strong><em>Title</em></strong> It's common practice to begin with a title, generally <code
+class="language-markdown"># Summary</code>. But it is not mandatory, the
+parser just ignores it. So you can too if you feel like it.</p>
 </li>
 <li>
-<p><strong><em>Prefix Chapter</em></strong> Before the main numbered chapters you can add a couple of elements that will not be numbered. This is useful for
-forewords, introductions, etc. There are however some constraints. You can not nest prefix chapters, they should all be on the root level. And you can not add prefix chapters once you have added numbered chapters.</p>
+<p><strong><em>Prefix Chapter</em></strong> Before the main numbered chapters you can add a couple
+of elements that will not be numbered. This is useful for forewords,
+introductions, etc. There are however some constraints. You can not nest
+prefix chapters, they should all be on the root level. And you can not add
+prefix chapters once you have added numbered chapters.</p>
 <pre><code class="language-markdown">[Title of prefix element](relative/path/to/markdown.md)
 </code></pre>
 </li>
 <li>
-<p><strong><em>Numbered Chapter</em></strong> Numbered chapters are the main content of the book, they will be numbered and can be nested,
-resulting in a nice hierarchy (chapters, sub-chapters, etc.)</p>
+<p><strong><em>Numbered Chapter</em></strong> Numbered chapters are the main content of the book,
+they will be numbered and can be nested, resulting in a nice hierarchy
+(chapters, sub-chapters, etc.)</p>
 <pre><code class="language-markdown">- [Title of the Chapter](relative/path/to/markdown.md)
 </code></pre>
 <p>You can either use <code>-</code> or <code>*</code> to indicate a numbered chapter.</p>
 </li>
 <li>
-<p><strong><em>Suffix Chapter</em></strong> After the numbered chapters you can add a couple of non-numbered chapters. They are the same as prefix chapters but come after the numbered chapters instead of before.</p>
+<p><strong><em>Suffix Chapter</em></strong> After the numbered chapters you can add a couple of
+non-numbered chapters. They are the same as prefix chapters but come after
+the numbered chapters instead of before.</p>
 </li>
 </ol>
-<p>All other elements are unsupported and will be ignored at best or result in an error.</p>
+<p>All other elements are unsupported and will be ignored at best or result in an
+error.</p>
 
                     </main>
 

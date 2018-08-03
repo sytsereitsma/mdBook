@@ -166,8 +166,12 @@ script:
 <a class="header" href="#deploying-your-book-to-github-pages" id="deploying-your-book-to-github-pages"><h2>Deploying Your Book to GitHub Pages</h2></a>
 <p>Following these instructions will result in your book being published to GitHub
 pages after a successful CI run on your repository's <code>master</code> branch.</p>
-<p>First, create a new GitHub &quot;Personal Access Token&quot; with the &quot;public_repo&quot; permissions (or &quot;repo&quot; for private repositories). Go to your repository's Travis CI settings page and add an environment variable named <code>GITHUB_TOKEN</code> that is marked secure and <em>not</em> shown in the logs.</p>
-<p>Then, append this snippet to your <code>.travis.yml</code> and update the path to the <code>book</code> directory:</p>
+<p>First, create a new GitHub &quot;Personal Access Token&quot; with the &quot;public_repo&quot;
+permissions (or &quot;repo&quot; for private repositories). Go to your repository's Travis
+CI settings page and add an environment variable named <code>GITHUB_TOKEN</code> that is
+marked secure and <em>not</em> shown in the logs.</p>
+<p>Then, append this snippet to your <code>.travis.yml</code> and update the path to the
+<code>book</code> directory:</p>
 <pre><code class="language-yaml">deploy:
   provider: pages
   skip-cleanup: true

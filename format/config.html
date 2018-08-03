@@ -158,8 +158,9 @@ additional-css = [&quot;custom.css&quot;]
 limit-results = 15
 </code></pre>
 <a class="header" href="#supported-configuration-options" id="supported-configuration-options"><h2>Supported configuration options</h2></a>
-<p>It is important to note that <strong>any</strong> relative path specified in the in the configuration will
-always be taken relative from the root of the book where the configuration file is located.</p>
+<p>It is important to note that <strong>any</strong> relative path specified in the in the
+configuration will always be taken relative from the root of the book where the
+configuration file is located.</p>
 <a class="header" href="#general-metadata" id="general-metadata"><h3>General metadata</h3></a>
 <p>This is general information about your book.</p>
 <ul>
@@ -187,12 +188,17 @@ src = &quot;my-src&quot;  # the source files will be found in `root/my-src` inst
 will be created when the book is built (i.e. <code>create-missing = true</code>). If this
 is <code>false</code> then the build process will instead exit with an error if any files
 do not exist.</li>
-<li><strong>preprocess:</strong> Specify which preprocessors to be applied. Default is <code>[&quot;links&quot;, &quot;index&quot;]</code>. To disable default preprocessors, pass an empty array <code>[]</code> in.</li>
+<li><strong>preprocess:</strong> Specify which preprocessors to be applied. Default is
+<code>[&quot;links&quot;, &quot;index&quot;]</code>. To disable default preprocessors, pass an empty array
+<code>[]</code> in.</li>
 </ul>
 <p>The following preprocessors are available and included by default:</p>
 <ul>
-<li><code>links</code>: Expand the <code>{{# playpen}}</code> and <code>{{# include}}</code> handlebars helpers in a chapter.</li>
-<li><code>index</code>: Convert all chapter files named <code>README.md</code> into <code>index.md</code>. That is to say, all <code>README.md</code> would be rendered to an index file <code>index.html</code> in the rendered book.</li>
+<li><code>links</code>: Expand the <code>{{# playpen}}</code> and <code>{{# include}}</code> handlebars helpers in
+a chapter.</li>
+<li><code>index</code>: Convert all chapter files named <code>README.md</code> into <code>index.md</code>. That is
+to say, all <code>README.md</code> would be rendered to an index file <code>index.html</code> in the
+rendered book.</li>
 </ul>
 <p><strong>book.toml</strong></p>
 <pre><code class="language-toml">[build]
@@ -205,27 +211,26 @@ preprocess = [&quot;links&quot;, &quot;index&quot;]
 renderer need to be specified under the TOML table <code>[output.html]</code>.</p>
 <p>The following configuration options are available:</p>
 <ul>
-<li><strong>theme:</strong> mdBook comes with a default theme and all the resource files
-needed for it. But if this option is set, mdBook will selectively overwrite
-the theme files with the ones found in the specified folder.</li>
-<li><strong>curly-quotes:</strong> Convert straight quotes to curly quotes, except for
-those that occur in code blocks and code spans. Defaults to <code>false</code>.</li>
-<li><strong>google-analytics:</strong> If you use Google Analytics, this option lets you
-enable it by simply specifying your ID in the configuration file.</li>
-<li><strong>additional-css:</strong> If you need to slightly change the appearance of your
-book without overwriting the whole style, you can specify a set of
-stylesheets that will be loaded after the default ones where you can
-surgically change the style.</li>
+<li><strong>theme:</strong> mdBook comes with a default theme and all the resource files needed
+for it. But if this option is set, mdBook will selectively overwrite the theme
+files with the ones found in the specified folder.</li>
+<li><strong>curly-quotes:</strong> Convert straight quotes to curly quotes, except for those
+that occur in code blocks and code spans. Defaults to <code>false</code>.</li>
+<li><strong>google-analytics:</strong> If you use Google Analytics, this option lets you enable
+it by simply specifying your ID in the configuration file.</li>
+<li><strong>additional-css:</strong> If you need to slightly change the appearance of your book
+without overwriting the whole style, you can specify a set of stylesheets that
+will be loaded after the default ones where you can surgically change the
+style.</li>
 <li><strong>additional-js:</strong> If you need to add some behaviour to your book without
-removing the current behaviour, you can specify a set of JavaScript files
-that will be loaded alongside the default one.</li>
+removing the current behaviour, you can specify a set of JavaScript files that
+will be loaded alongside the default one.</li>
 <li><strong>no-section-label:</strong> mdBook by defaults adds section label in table of
-contents column. For example, &quot;1.&quot;, &quot;2.1&quot;. Set this option to true to
-disable those labels. Defaults to <code>false</code>.</li>
+contents column. For example, &quot;1.&quot;, &quot;2.1&quot;. Set this option to true to disable
+those labels. Defaults to <code>false</code>.</li>
 <li><strong>playpen:</strong> A subtable for configuring various playpen settings.</li>
-<li><strong>search:</strong> A subtable for configuring the in-browser search
-functionality. mdBook must be compiled with the <code>search</code> feature enabled
-(on by default).</li>
+<li><strong>search:</strong> A subtable for configuring the in-browser search functionality.
+mdBook must be compiled with the <code>search</code> feature enabled (on by default).</li>
 </ul>
 <p>Available configuration options for the <code>[output.html.playpen]</code> table:</p>
 <ul>
@@ -239,23 +244,22 @@ Defaults to <code>true</code>.</li>
 <li><strong>limit-results:</strong> The maximum number of search results. Defaults to <code>30</code>.</li>
 <li><strong>teaser-word-count:</strong> The number of words used for a search result teaser.
 Defaults to <code>30</code>.</li>
-<li><strong>use-boolean-and:</strong> Define the logical link between multiple search words.
-If true, all search words must appear in each result. Defaults to <code>true</code>.</li>
+<li><strong>use-boolean-and:</strong> Define the logical link between multiple search words. If
+true, all search words must appear in each result. Defaults to <code>true</code>.</li>
 <li><strong>boost-title:</strong> Boost factor for the search result score if a search word
 appears in the header. Defaults to <code>2</code>.</li>
-<li><strong>boost-hierarchy:</strong> Boost factor for the search result score if a search
-word appears in the hierarchy. The hierarchy contains all titles of the
-parent documents and all parent headings. Defaults to <code>1</code>.</li>
-<li><strong>boost-paragraph:</strong> Boost factor for the search result score if a search
-word appears in the text. Defaults to <code>1</code>.</li>
+<li><strong>boost-hierarchy:</strong> Boost factor for the search result score if a search word
+appears in the hierarchy. The hierarchy contains all titles of the parent
+documents and all parent headings. Defaults to <code>1</code>.</li>
+<li><strong>boost-paragraph:</strong> Boost factor for the search result score if a search word
+appears in the text. Defaults to <code>1</code>.</li>
 <li><strong>expand:</strong> True if search should match longer results e.g. search <code>micro</code>
 should match <code>microwave</code>. Defaults to <code>true</code>.</li>
 <li><strong>heading-split-level:</strong> Search results will link to a section of the document
-which contains the result. Documents are split into sections by headings
-this level or less.
-Defaults to <code>3</code>. (<code>### This is a level 3 heading</code>)</li>
-<li><strong>copy-js:</strong> Copy JavaScript files for the search implementation to the
-output directory. Defaults to <code>true</code>.</li>
+which contains the result. Documents are split into sections by headings this
+level or less. Defaults to <code>3</code>. (<code>### This is a level 3 heading</code>)</li>
+<li><strong>copy-js:</strong> Copy JavaScript files for the search implementation to the output
+directory. Defaults to <code>true</code>.</li>
 </ul>
 <p>This shows all available options in the <strong>book.toml</strong>:</p>
 <pre><code class="language-toml">[book]
@@ -297,10 +301,10 @@ copy-js = true
 corresponding environment variable. Because many operating systems restrict
 environment variables to be alphanumeric characters or <code>_</code>, the configuration
 key needs to be formatted slightly differently to the normal <code>foo.bar.baz</code> form.</p>
-<p>Variables starting with <code>MDBOOK_</code> are used for configuration. The key is
-created by removing the <code>MDBOOK_</code> prefix and turning the resulting
-string into <code>kebab-case</code>. Double underscores (<code>__</code>) separate nested
-keys, while a single underscore (<code>_</code>) is replaced with a dash (<code>-</code>).</p>
+<p>Variables starting with <code>MDBOOK_</code> are used for configuration. The key is created
+by removing the <code>MDBOOK_</code> prefix and turning the resulting string into
+<code>kebab-case</code>. Double underscores (<code>__</code>) separate nested keys, while a single
+underscore (<code>_</code>) is replaced with a dash (<code>-</code>).</p>
 <p>For example:</p>
 <ul>
 <li><code>MDBOOK_foo</code> -&gt; <code>foo</code></li>
@@ -309,21 +313,21 @@ keys, while a single underscore (<code>_</code>) is replaced with a dash (<code>
 <li><code>MDBOOK_FOO_BAR</code> -&gt; <code>foo-bar</code></li>
 <li><code>MDBOOK_FOO_bar__baz</code> -&gt; <code>foo-bar.baz</code></li>
 </ul>
-<p>So by setting the <code>MDBOOK_BOOK__TITLE</code> environment variable you can
-override the book's title without needing to touch your <code>book.toml</code>.</p>
+<p>So by setting the <code>MDBOOK_BOOK__TITLE</code> environment variable you can override the
+book's title without needing to touch your <code>book.toml</code>.</p>
 <blockquote>
-<p><strong>Note:</strong> To facilitate setting more complex config items, the value
-of an environment variable is first parsed as JSON, falling back to a
-string if the parse fails.</p>
-<p>This means, if you so desired, you could override all book metadata
-when building the book with something like</p>
+<p><strong>Note:</strong> To facilitate setting more complex config items, the value of an
+environment variable is first parsed as JSON, falling back to a string if the
+parse fails.</p>
+<p>This means, if you so desired, you could override all book metadata when
+building the book with something like</p>
 <pre><code class="language-text">$ export MDBOOK_BOOK=&quot;{'title': 'My Awesome Book', authors: ['Michael-F-Bryan']}&quot;
 $ mdbook build
 </code></pre>
 </blockquote>
-<p>The latter case may be useful in situations where <code>mdbook</code> is invoked
-from a script or CI, where it sometimes isn't possible to update the
-<code>book.toml</code> before building.</p>
+<p>The latter case may be useful in situations where <code>mdbook</code> is invoked from a
+script or CI, where it sometimes isn't possible to update the <code>book.toml</code> before
+building.</p>
 
                     </main>
 

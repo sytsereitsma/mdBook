@@ -141,9 +141,9 @@
                     <main>
                         <a class="header" href="#the-serve-command" id="the-serve-command"><h1>The serve command</h1></a>
 <p>The serve command is used to preview a book by serving it over HTTP at
-<code>localhost:3000</code> by default. Additionally it watches the book's directory
-for changes, rebuilding the book and refreshing clients for each change.
-A websocket connection is used to trigger the client-side refresh.</p>
+<code>localhost:3000</code> by default. Additionally it watches the book's directory for
+changes, rebuilding the book and refreshing clients for each change. A websocket
+connection is used to trigger the client-side refresh.</p>
 <a class="header" href="#specify-a-directory" id="specify-a-directory"><h4>Specify a directory</h4></a>
 <p>The <code>serve</code> command can take a directory as an argument to use as the book's
 root instead of the current working directory.</p>
@@ -153,8 +153,8 @@ root instead of the current working directory.</p>
 <p><code>serve</code> has four options: the HTTP port, the WebSocket port, the HTTP hostname
 to listen on, and the hostname for the browser to connect to for WebSockets.</p>
 <p>For example: suppose you have an nginx server for SSL termination which has a
-public address of 192.168.1.100 on port 80 and proxied that to 127.0.0.1 on
-port 8000. To run use the nginx proxy do:</p>
+public address of 192.168.1.100 on port 80 and proxied that to 127.0.0.1 on port
+8000. To run use the nginx proxy do:</p>
 <pre><code class="language-bash">mdbook serve path/to/book -p 8000 -n 127.0.0.1 --websocket-hostname 192.168.1.100
 </code></pre>
 <p>If you were to want live reloading for this you would need to proxy the
@@ -162,16 +162,15 @@ websocket calls through nginx as well from <code>192.168.1.100:&lt;WS_PORT&gt;</
 <code>127.0.0.1:&lt;WS_PORT&gt;</code>. The <code>-w</code> flag allows for the websocket port to be
 configured.</p>
 <a class="header" href="#a--open" id="a--open"><h4>--open</h4></a>
-<p>When you use the <code>--open</code> (<code>-o</code>) flag, mdbook will open the book in your
-your default web browser after starting the server.</p>
+<p>When you use the <code>--open</code> (<code>-o</code>) flag, mdbook will open the book in your your
+default web browser after starting the server.</p>
 <a class="header" href="#a--dest-dir" id="a--dest-dir"><h4>--dest-dir</h4></a>
-<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for
-the book. If not specified it will default to the value of the
-<code>build.build-dir</code> key in <code>book.toml</code>, or to <code>./book</code> relative to the book's
-root directory.</p>
+<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for the
+book. If not specified it will default to the value of the <code>build.build-dir</code> key
+in <code>book.toml</code>, or to <code>./book</code> relative to the book's root directory.</p>
 <hr />
-<p><strong><em>Note:</em></strong> <em>The <code>serve</code> command is for testing, and is not intended
-to be a complete HTTP server for a website.</em></p>
+<p><strong><em>Note:</em></strong> <em>The <code>serve</code> command is for testing, and is not intended to be a
+complete HTTP server for a website.</em></p>
 
                     </main>
 

@@ -144,9 +144,9 @@
 <a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Book</a> uses a lot
 of code examples that could get outdated. Therefore it is very important for
 them to be able to automatically test these code examples.</p>
-<p>mdBook supports a <code>test</code> command that will run all available tests in a book.
-At the moment, only rustdoc tests are supported, but this may be expanded upon
-in the future.</p>
+<p>mdBook supports a <code>test</code> command that will run all available tests in a book. At
+the moment, only rustdoc tests are supported, but this may be expanded upon in
+the future.</p>
 <a class="header" href="#disable-tests-on-a-code-block" id="disable-tests-on-a-code-block"><h4>Disable tests on a code block</h4></a>
 <p>rustdoc doesn't test code blocks which contain the <code>ignore</code> attribute:</p>
 <pre><code>```rust,ignore
@@ -164,8 +164,8 @@ This is going to cause an error!
 ```
 </code></pre>
 <a class="header" href="#specify-a-directory" id="specify-a-directory"><h4>Specify a directory</h4></a>
-<p>The <code>test</code> command can take a directory as an argument to use as the book's
-root instead of the current working directory.</p>
+<p>The <code>test</code> command can take a directory as an argument to use as the book's root
+instead of the current working directory.</p>
 <pre><code class="language-bash">mdbook test path/to/book
 </code></pre>
 <a class="header" href="#a--library-path" id="a--library-path"><h4>--library-path</h4></a>
@@ -174,10 +174,9 @@ search path used by <code>rustdoc</code> when it builds and tests the examples. 
 directories can be specified with multiple options (<code>-L foo -L bar</code>) or with a
 comma-delimited list (<code>-L foo,bar</code>).</p>
 <a class="header" href="#a--dest-dir" id="a--dest-dir"><h4>--dest-dir</h4></a>
-<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for
-the book. If not specified it will default to the value of the
-<code>build.build-dir</code> key in <code>book.toml</code>, or to <code>./book</code> relative to the book's
-root directory.</p>
+<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for the
+book. If not specified it will default to the value of the <code>build.build-dir</code> key
+in <code>book.toml</code>, or to <code>./book</code> relative to the book's root directory.</p>
 
                     </main>
 

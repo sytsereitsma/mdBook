@@ -140,20 +140,21 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#indexhbs" id="indexhbs"><h1>index.hbs</h1></a>
-<p><code>index.hbs</code> is the handlebars template that is used to render the book.
-The markdown files are processed to html and then injected in that template.</p>
-<p>If you want to change the layout or style of your book, chances are that you will
-have to modify this template a little bit. Here is what you need to know.</p>
+<p><code>index.hbs</code> is the handlebars template that is used to render the book. The
+markdown files are processed to html and then injected in that template.</p>
+<p>If you want to change the layout or style of your book, chances are that you
+will have to modify this template a little bit. Here is what you need to know.</p>
 <a class="header" href="#data" id="data"><h2>Data</h2></a>
-<p>A lot of data is exposed to the handlebars template with the &quot;context&quot;.
-In the handlebars template you can access this information by using</p>
+<p>A lot of data is exposed to the handlebars template with the &quot;context&quot;. In the
+handlebars template you can access this information by using</p>
 <pre><code class="language-handlebars">{{name_of_property}}
 </code></pre>
 <p>Here is a list of the properties that are exposed:</p>
 <ul>
 <li>
-<p><strong><em>language</em></strong> Language of the book in the form <code>en</code>. To use in <code class="language-html">&lt;html lang=&quot;{{ language }}&quot;&gt;</code> for example.
-At the moment it is hardcoded.</p>
+<p><strong><em>language</em></strong> Language of the book in the form <code>en</code>. To use in <code
+class="language-html">&lt;html lang=&quot;{{ language }}&quot;&gt;</code> for example. At the
+moment it is hardcoded.</p>
 </li>
 <li>
 <p><strong><em>title</em></strong> Title of the book, as specified in <code>book.toml</code></p>
@@ -162,24 +163,29 @@ At the moment it is hardcoded.</p>
 <p><strong><em>chapter_title</em></strong> Title of the current chapter, as listed in <code>SUMMARY.md</code></p>
 </li>
 <li>
-<p><strong><em>path</em></strong> Relative path to the original markdown file from the source directory</p>
+<p><strong><em>path</em></strong> Relative path to the original markdown file from the source
+directory</p>
 </li>
 <li>
 <p><strong><em>content</em></strong> This is the rendered markdown.</p>
 </li>
 <li>
-<p><strong><em>path_to_root</em></strong> This is a path containing exclusively <code>../</code>'s that points to the root of the book from the current file.
-Since the original directory structure is maintained, it is useful to prepend relative links with this <code>path_to_root</code>.</p>
+<p><strong><em>path_to_root</em></strong> This is a path containing exclusively <code>../</code>'s that points
+to the root of the book from the current file. Since the original directory
+structure is maintained, it is useful to prepend relative links with this
+<code>path_to_root</code>.</p>
 </li>
 <li>
 <p><strong><em>chapters</em></strong> Is an array of dictionaries of the form</p>
 <pre><code class="language-json">{&quot;section&quot;: &quot;1.2.1&quot;, &quot;name&quot;: &quot;name of this chapter&quot;, &quot;path&quot;: &quot;dir/markdown.md&quot;}
 </code></pre>
-<p>containing all the chapters of the book. It is used for example to construct the table of contents (sidebar).</p>
+<p>containing all the chapters of the book. It is used for example to construct
+the table of contents (sidebar).</p>
 </li>
 </ul>
 <a class="header" href="#handlebars-helpers" id="handlebars-helpers"><h2>Handlebars Helpers</h2></a>
-<p>In addition to the properties you can access, there are some handlebars helpers at your disposal.</p>
+<p>In addition to the properties you can access, there are some handlebars helpers
+at your disposal.</p>
 <a class="header" href="#a1-toc" id="a1-toc"><h3>1. toc</h3></a>
 <pre><code>The toc helper is used like this
 
@@ -227,7 +233,8 @@ The inner html will only be rendered if the previous / next chapter exists.
 Of course the inner html can be changed to your liking.
 </code></pre>
 <hr />
-<p><em>If you would like other properties or helpers exposed, please <a href="https://github.com/rust-lang-nursery/mdBook/issues">create a new issue</a></em></p>
+<p><em>If you would like other properties or helpers exposed, please <a href="https://github.com/rust-lang-nursery/mdBook/issues">create a new
+issue</a></em></p>
 
                     </main>
 
