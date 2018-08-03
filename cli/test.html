@@ -9,15 +9,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" href="../book.css">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
-        <link rel="shortcut icon" href="favicon.png">
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
@@ -29,9 +32,11 @@
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         
-
     </head>
     <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "../";</script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -135,20 +140,44 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#the-test-command" id="the-test-command"><h1>The test command</h1></a>
-<p>When writing a book, you sometimes need to automate some tests. For example, <a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Book</a> uses a lot of code examples that could get outdated.
-Therefore it is very important for them to be able to automatically test these code examples.</p>
-<p>mdBook supports a <code>test</code> command that will run all available tests in mdBook. At the moment, only one test is available:
-<em>&quot;Test Rust code examples using Rustdoc&quot;</em>, but I hope this will be expanded in the future to include more tests like:</p>
-<ul>
-<li>checking for broken links</li>
-<li>checking for unused files</li>
-<li>...</li>
-</ul>
-<p>In the future I would like the user to be able to enable / disable test from the <code>book.toml</code> configuration file and support custom tests.</p>
-<p><strong>How to use it:</strong></p>
-<pre><code class="language-bash">$ mdbook test
-[*]: Testing file: &quot;/mdBook/book-example/src/README.md”
+<p>When writing a book, you sometimes need to automate some tests. For example,
+<a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Book</a> uses a lot
+of code examples that could get outdated. Therefore it is very important for
+them to be able to automatically test these code examples.</p>
+<p>mdBook supports a <code>test</code> command that will run all available tests in a book.
+At the moment, only rustdoc tests are supported, but this may be expanded upon
+in the future.</p>
+<a class="header" href="#disable-tests-on-a-code-block" id="disable-tests-on-a-code-block"><h4>Disable tests on a code block</h4></a>
+<p>rustdoc doesn't test code blocks which contain the <code>ignore</code> attribute:</p>
+<pre><code>```rust,ignore
+fn main() {}
+```
 </code></pre>
+<p>rustdoc also doesn't test code blocks which specify a language other than Rust:</p>
+<pre><code>```markdown
+**Foo**: _bar_
+```
+</code></pre>
+<p>rustdoc <em>does</em> test code blocks which have no language specified:</p>
+<pre><code>```
+This is going to cause an error!
+```
+</code></pre>
+<a class="header" href="#specify-a-directory" id="specify-a-directory"><h4>Specify a directory</h4></a>
+<p>The <code>test</code> command can take a directory as an argument to use as the book's
+root instead of the current working directory.</p>
+<pre><code class="language-bash">mdbook test path/to/book
+</code></pre>
+<a class="header" href="#a--library-path" id="a--library-path"><h4>--library-path</h4></a>
+<p>The <code>--library-path</code> (<code>-L</code>) option allows you to add directories to the library
+search path used by <code>rustdoc</code> when it builds and tests the examples. Multiple
+directories can be specified with multiple options (<code>-L foo -L bar</code>) or with a
+comma-delimited list (<code>-L foo,bar</code>).</p>
+<a class="header" href="#a--dest-dir" id="a--dest-dir"><h4>--dest-dir</h4></a>
+<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for
+the book. If not specified it will default to the value of the
+<code>build.build-dir</code> key in <code>book.toml</code>, or to <code>./book</code> relative to the book's
+root directory.</p>
 
                     </main>
 
@@ -199,12 +228,6 @@ Therefore it is very important for them to be able to automatically test these c
         <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
         
 
-        
-        <script src="../searchindex.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            var path_to_root = "../";
-        </script>
-        
         
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>

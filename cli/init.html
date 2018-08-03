@@ -9,15 +9,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" href="../book.css">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
-        <link rel="shortcut icon" href="favicon.png">
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
@@ -29,9 +32,11 @@
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         
-
     </head>
     <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "../";</script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -135,7 +140,8 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#the-init-command" id="the-init-command"><h1>The init command</h1></a>
-<p>There is some minimal boilerplate that is the same for every new book. It's for this purpose that mdBook includes an <code>init</code> command.</p>
+<p>There is some minimal boilerplate that is the same for every new book. It's for this purpose
+that mdBook includes an <code>init</code> command.</p>
 <p>The <code>init</code> command is used like this:</p>
 <pre><code class="language-bash">mdbook init
 </code></pre>
@@ -156,18 +162,21 @@ configuration files, etc.</p>
 to a server to be seen by your audience.</p>
 </li>
 <li>
-<p>The <code>SUMMARY.md</code> file is the most important file, it's the skeleton of your book and is discussed in more detail in another  <a href="../format/summary.html">chapter</a></p>
+<p>The <code>SUMMARY.md</code> file is the most important file, it's the skeleton of your book and is
+discussed in more detail <a href="../format/summary.html">in another chapter</a></p>
 </li>
 </ul>
-<a class="header" href="#tip--trick-hidden-feature" id="tip--trick-hidden-feature"><h4>Tip &amp; Trick: Hidden Feature</h4></a>
-<p>When a <code>SUMMARY.md</code> file already exists, the <code>init</code> command will first parse it and generate the missing files according to the paths used in the <code>SUMMARY.md</code>. This allows you to think and create the whole structure of your book and then let mdBook generate it for you.</p>
+<a class="header" href="#tip-generate-chapters-from-summarymd" id="tip-generate-chapters-from-summarymd"><h4>Tip: Generate chapters from SUMMARY.md</h4></a>
+<p>When a <code>SUMMARY.md</code> file already exists, the <code>init</code> command will first parse it and generate the
+missing files according to the paths used in the <code>SUMMARY.md</code>. This allows you to think and create
+the whole structure of your book and then let mdBook generate it for you.</p>
 <a class="header" href="#specify-a-directory" id="specify-a-directory"><h4>Specify a directory</h4></a>
-<p>When using the <code>init</code> command, you can also specify a directory, instead of using the current working directory,
-by appending a path to the command:</p>
+<p>The <code>init</code> command can take a directory as an argument to use as the book's
+root instead of the current working directory.</p>
 <pre><code class="language-bash">mdbook init path/to/book
 </code></pre>
-<a class="header" href="#a--theme" id="a--theme"><h2>--theme</h2></a>
-<p>When you use the <code>--theme</code> argument, the default theme will be copied into a directory
+<a class="header" href="#a--theme" id="a--theme"><h4>--theme</h4></a>
+<p>When you use the <code>--theme</code> flag, the default theme will be copied into a directory
 called <code>theme</code> in your source directory so that you can modify it.</p>
 <p>The theme is selectively overwritten, this means that if you don't want to overwrite a
 specific file, just delete it and the default file will be used.</p>
@@ -221,12 +230,6 @@ specific file, just delete it and the default file will be used.</p>
         <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
         
 
-        
-        <script src="../searchindex.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            var path_to_root = "../";
-        </script>
-        
         
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>

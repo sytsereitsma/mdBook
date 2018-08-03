@@ -9,15 +9,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" href="../../book.css">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
-        <link rel="shortcut icon" href="favicon.png">
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
-
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../../highlight.css">
         <link rel="stylesheet" href="../../tomorrow-night.css">
         <link rel="stylesheet" href="../../ayu-highlight.css">
@@ -29,9 +32,11 @@
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         
-
     </head>
     <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "../../";</script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -175,14 +180,17 @@ Since the original directory structure is maintained, it is useful to prepend re
 </ul>
 <a class="header" href="#handlebars-helpers" id="handlebars-helpers"><h2>Handlebars Helpers</h2></a>
 <p>In addition to the properties you can access, there are some handlebars helpers at your disposal.</p>
-<ol>
-<li>
-<a class="header" href="#toc" id="toc"><h3>toc</h3></a>
-<p>The toc helper is used like this</p>
-<pre><code class="language-handlebars">{{#toc}}{{/toc}}
-</code></pre>
-<p>and outputs something that looks like this, depending on the structure of your book</p>
-<pre><code class="language-html">&lt;ul class=&quot;chapter&quot;&gt;
+<a class="header" href="#a1-toc" id="a1-toc"><h3>1. toc</h3></a>
+<pre><code>The toc helper is used like this
+
+```handlebars
+{{#toc}}{{/toc}}
+```
+
+and outputs something that looks like this, depending on the structure of your book
+
+```html
+&lt;ul class=&quot;chapter&quot;&gt;
     &lt;li&gt;&lt;a href=&quot;link/to/file.html&quot;&gt;Some chapter&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;
         &lt;ul class=&quot;section&quot;&gt;
@@ -190,32 +198,36 @@ Since the original directory structure is maintained, it is useful to prepend re
         &lt;/ul&gt;
     &lt;/li&gt;
 &lt;/ul&gt;
-</code></pre>
-<p>If you would like to make a toc with another structure, you have access to the chapters property containing all the data.
-The only limitation at the moment is that you would have to do it with JavaScript instead of with a handlebars helper.</p>
-<pre><code class="language-html">&lt;script&gt;
+```
+
+If you would like to make a toc with another structure, you have access to the chapters property containing all the data.
+The only limitation at the moment is that you would have to do it with JavaScript instead of with a handlebars helper.
+
+```html
+&lt;script&gt;
 var chapters = {{chapters}};
 // Processing here
 &lt;/script&gt;
+```
 </code></pre>
-</li>
-<li>
-<a class="header" href="#previous--next" id="previous--next"><h3>previous / next</h3></a>
-<p>The previous and next helpers expose a <code>link</code> and <code>name</code> property to the previous and next chapters.</p>
-<p>They are used like this</p>
-<pre><code class="language-handlebars">{{#previous}}
+<a class="header" href="#a2-previous--next" id="a2-previous--next"><h3>2. previous / next</h3></a>
+<pre><code>The previous and next helpers expose a `link` and `name` property to the previous and next chapters.
+
+They are used like this
+
+```handlebars
+{{#previous}}
     &lt;a href=&quot;{{link}}&quot; class=&quot;nav-chapters previous&quot;&gt;
         &lt;i class=&quot;fa fa-angle-left&quot;&gt;&lt;/i&gt;
     &lt;/a&gt;
 {{/previous}}
+```
+
+The inner html will only be rendered if the previous / next chapter exists.
+Of course the inner html can be changed to your liking.
 </code></pre>
-<p>The inner html will only be rendered if the previous / next chapter exists.
-Of course the inner html can be changed to your liking.</p>
-</li>
-</ol>
 <hr />
-<p><em>If you would like me to expose other properties or helpers, please <a href="https://github.com/rust-lang-nursery/mdBook/issues">create a new issue</a>
-and I will consider it.</em></p>
+<p><em>If you would like other properties or helpers exposed, please <a href="https://github.com/rust-lang-nursery/mdBook/issues">create a new issue</a></em></p>
 
                     </main>
 
@@ -266,12 +278,6 @@ and I will consider it.</em></p>
         <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
         
 
-        
-        <script src="../../searchindex.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            var path_to_root = "../../";
-        </script>
-        
         
         <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>

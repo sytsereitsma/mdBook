@@ -9,15 +9,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" href="book.css">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
-        <link rel="shortcut icon" href="favicon.png">
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
@@ -29,9 +32,11 @@
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         
-
     </head>
     <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -162,7 +167,8 @@ cargo build --release
 </code></pre>
 <p>The executable <code>mdbook</code> will be in the <code>./target/release</code> folder, this should be added to the path.</p>
 <a class="header" href="#the-init-command" id="the-init-command"><h1>The init command</h1></a>
-<p>There is some minimal boilerplate that is the same for every new book. It's for this purpose that mdBook includes an <code>init</code> command.</p>
+<p>There is some minimal boilerplate that is the same for every new book. It's for this purpose
+that mdBook includes an <code>init</code> command.</p>
 <p>The <code>init</code> command is used like this:</p>
 <pre><code class="language-bash">mdbook init
 </code></pre>
@@ -183,18 +189,21 @@ configuration files, etc.</p>
 to a server to be seen by your audience.</p>
 </li>
 <li>
-<p>The <code>SUMMARY.md</code> file is the most important file, it's the skeleton of your book and is discussed in more detail in another  <a href="../format/summary.html">chapter</a></p>
+<p>The <code>SUMMARY.md</code> file is the most important file, it's the skeleton of your book and is
+discussed in more detail <a href="../format/summary.html">in another chapter</a></p>
 </li>
 </ul>
-<a class="header" href="#tip--trick-hidden-feature" id="tip--trick-hidden-feature"><h4>Tip &amp; Trick: Hidden Feature</h4></a>
-<p>When a <code>SUMMARY.md</code> file already exists, the <code>init</code> command will first parse it and generate the missing files according to the paths used in the <code>SUMMARY.md</code>. This allows you to think and create the whole structure of your book and then let mdBook generate it for you.</p>
+<a class="header" href="#tip-generate-chapters-from-summarymd" id="tip-generate-chapters-from-summarymd"><h4>Tip: Generate chapters from SUMMARY.md</h4></a>
+<p>When a <code>SUMMARY.md</code> file already exists, the <code>init</code> command will first parse it and generate the
+missing files according to the paths used in the <code>SUMMARY.md</code>. This allows you to think and create
+the whole structure of your book and then let mdBook generate it for you.</p>
 <a class="header" href="#specify-a-directory" id="specify-a-directory"><h4>Specify a directory</h4></a>
-<p>When using the <code>init</code> command, you can also specify a directory, instead of using the current working directory,
-by appending a path to the command:</p>
+<p>The <code>init</code> command can take a directory as an argument to use as the book's
+root instead of the current working directory.</p>
 <pre><code class="language-bash">mdbook init path/to/book
 </code></pre>
-<a class="header" href="#a--theme" id="a--theme"><h2>--theme</h2></a>
-<p>When you use the <code>--theme</code> argument, the default theme will be copied into a directory
+<a class="header" href="#a--theme" id="a--theme"><h4>--theme</h4></a>
+<p>When you use the <code>--theme</code> flag, the default theme will be copied into a directory
 called <code>theme</code> in your source directory so that you can modify it.</p>
 <p>The theme is selectively overwritten, this means that if you don't want to overwrite a
 specific file, just delete it and the default file will be used.</p>
@@ -207,78 +216,125 @@ and fetch the corresponding files.</p>
 <p>The rendered output will maintain the same directory structure as the source for
 convenience. Large books will therefore remain structured when rendered.</p>
 <a class="header" href="#specify-a-directory-1" id="specify-a-directory-1"><h4>Specify a directory</h4></a>
-<p>Like <code>init</code>, the <code>build</code> command can take a directory as an argument to use
-instead of the current working directory.</p>
+<p>The <code>build</code> command can take a directory as an argument to use as the book's
+root instead of the current working directory.</p>
 <pre><code class="language-bash">mdbook build path/to/book
 </code></pre>
 <a class="header" href="#a--open" id="a--open"><h4>--open</h4></a>
-<p>When you use the <code>--open</code> (<code>-o</code>) option, mdbook will open the rendered book in
+<p>When you use the <code>--open</code> (<code>-o</code>) flag, mdbook will open the rendered book in
 your default web browser after building it.</p>
 <a class="header" href="#a--dest-dir" id="a--dest-dir"><h4>--dest-dir</h4></a>
-<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for your book.</p>
+<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for
+the book. If not specified it will default to the value of the
+<code>build.build-dir</code> key in <code>book.toml</code>, or to <code>./book</code> relative to the book's
+root directory.</p>
 <hr />
-<p><strong><em>note:</em></strong> <em>make sure to run the build command in the root directory and not in the source directory</em></p>
+<p><strong><em>Note:</em></strong> <em>Make sure to run the build command in the root directory and not in the source directory</em></p>
 <a class="header" href="#the-watch-command" id="the-watch-command"><h1>The watch command</h1></a>
-<p>The <code>watch</code> command is useful when you want your book to be rendered on every file change.
-You could repeatedly issue <code>mdbook build</code> every time a file is changed. But using <code>mdbook watch</code> once will watch your files and will trigger a build automatically whenever you modify a file.</p>
+<p>The <code>watch</code> command is useful when you want your book to be rendered on every
+file change. You could repeatedly issue <code>mdbook build</code> every time a file is
+changed. But using <code>mdbook watch</code> once will watch your files and will trigger
+a build automatically whenever you modify a file.</p>
 <a class="header" href="#specify-a-directory-2" id="specify-a-directory-2"><h4>Specify a directory</h4></a>
-<p>Like <code>init</code> and <code>build</code>, <code>watch</code> can take a directory as an argument to use
-instead of the current working directory.</p>
+<p>The <code>watch</code> command can take a directory as an argument to use as the book's
+root instead of the current working directory.</p>
 <pre><code class="language-bash">mdbook watch path/to/book
 </code></pre>
 <a class="header" href="#a--open-1" id="a--open-1"><h4>--open</h4></a>
 <p>When you use the <code>--open</code> (<code>-o</code>) option, mdbook will open the rendered book in
 your default web browser.</p>
 <a class="header" href="#a--dest-dir-1" id="a--dest-dir-1"><h4>--dest-dir</h4></a>
-<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for your book.</p>
-<hr />
-<p><strong><em>note:</em></strong> <em>the <code>watch</code> command has not gotten a lot of testing yet, there could be some rough edges. If you discover a problem, please report it <a href="https://github.com/rust-lang-nursery/mdBook/issues">on Github</a></em></p>
+<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for
+the book. If not specified it will default to the value of the
+<code>build.build-dir</code> key in <code>book.toml</code>, or to <code>./book</code> relative to the book's
+root directory.</p>
 <a class="header" href="#the-serve-command" id="the-serve-command"><h1>The serve command</h1></a>
-<p>The <code>serve</code> command is useful when you want to preview your book. It also does hot reloading of the webpage whenever a file changes.
-It achieves this by serving the books content over <code>localhost:3000</code> (unless otherwise configured, see below) and runs a websocket server on <code>localhost:3001</code> which triggers the reloads.
-This preferred by many for writing books with mdbook because it allows for you to see the result of your work instantly after every file change.</p>
+<p>The serve command is used to preview a book by serving it over HTTP at
+<code>localhost:3000</code> by default. Additionally it watches the book's directory
+for changes, rebuilding the book and refreshing clients for each change.
+A websocket connection is used to trigger the client-side refresh.</p>
 <a class="header" href="#specify-a-directory-3" id="specify-a-directory-3"><h4>Specify a directory</h4></a>
-<p>Like <code>watch</code>, <code>serve</code> can take a directory as an argument to use instead of
-the current working directory.</p>
+<p>The <code>serve</code> command can take a directory as an argument to use as the book's
+root instead of the current working directory.</p>
 <pre><code class="language-bash">mdbook serve path/to/book
 </code></pre>
 <a class="header" href="#server-options" id="server-options"><h4>Server options</h4></a>
-<p><code>serve</code> has four options: the http port, the websocket port, the interface to serve on, and the public address of the server so that the browser may reach the websocket server.</p>
-<p>For example: suppose you had an nginx server for SSL termination which has a public address of 192.168.1.100 on port 80 and proxied that to 127.0.0.1 on port 8000. To run use the nginx proxy do:</p>
-<pre><code class="language-bash">mdbook serve path/to/book -p 8000 -i 127.0.0.1 -a 192.168.1.100
+<p><code>serve</code> has four options: the HTTP port, the WebSocket port, the HTTP hostname
+to listen on, and the hostname for the browser to connect to for WebSockets.</p>
+<p>For example: suppose you have an nginx server for SSL termination which has a
+public address of 192.168.1.100 on port 80 and proxied that to 127.0.0.1 on
+port 8000. To run use the nginx proxy do:</p>
+<pre><code class="language-bash">mdbook serve path/to/book -p 8000 -n 127.0.0.1 --websocket-hostname 192.168.1.100
 </code></pre>
-<p>If you were to want live reloading for this you would need to proxy the websocket calls through nginx as well from <code>192.168.1.100:&lt;WS_PORT&gt;</code> to <code>127.0.0.1:&lt;WS_PORT&gt;</code>. The <code>-w</code> flag allows for the websocket port to be configured.</p>
+<p>If you were to want live reloading for this you would need to proxy the
+websocket calls through nginx as well from <code>192.168.1.100:&lt;WS_PORT&gt;</code> to
+<code>127.0.0.1:&lt;WS_PORT&gt;</code>. The <code>-w</code> flag allows for the websocket port to be
+configured.</p>
 <a class="header" href="#a--open-2" id="a--open-2"><h4>--open</h4></a>
-<p>When you use the <code>--open</code> (<code>-o</code>) option, mdbook will open the book in your
+<p>When you use the <code>--open</code> (<code>-o</code>) flag, mdbook will open the book in your
 your default web browser after starting the server.</p>
 <a class="header" href="#a--dest-dir-2" id="a--dest-dir-2"><h4>--dest-dir</h4></a>
-<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for your book.</p>
+<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for
+the book. If not specified it will default to the value of the
+<code>build.build-dir</code> key in <code>book.toml</code>, or to <code>./book</code> relative to the book's
+root directory.</p>
 <hr />
-<p><strong><em>note:</em></strong> <em>the <code>serve</code> command has not gotten a lot of testing yet, there could be some rough edges. If you discover a problem, please report it <a href="https://github.com/rust-lang-nursery/mdBook/issues">on Github</a></em></p>
+<p><strong><em>Note:</em></strong> <em>The <code>serve</code> command is for testing, and is not intended
+to be a complete HTTP server for a website.</em></p>
 <a class="header" href="#the-test-command" id="the-test-command"><h1>The test command</h1></a>
-<p>When writing a book, you sometimes need to automate some tests. For example, <a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Book</a> uses a lot of code examples that could get outdated.
-Therefore it is very important for them to be able to automatically test these code examples.</p>
-<p>mdBook supports a <code>test</code> command that will run all available tests in mdBook. At the moment, only one test is available:
-<em>&quot;Test Rust code examples using Rustdoc&quot;</em>, but I hope this will be expanded in the future to include more tests like:</p>
-<ul>
-<li>checking for broken links</li>
-<li>checking for unused files</li>
-<li>...</li>
-</ul>
-<p>In the future I would like the user to be able to enable / disable test from the <code>book.toml</code> configuration file and support custom tests.</p>
-<p><strong>How to use it:</strong></p>
-<pre><code class="language-bash">$ mdbook test
-[*]: Testing file: &quot;/mdBook/book-example/src/README.md”
+<p>When writing a book, you sometimes need to automate some tests. For example,
+<a href="https://doc.rust-lang.org/stable/book/">The Rust Programming Book</a> uses a lot
+of code examples that could get outdated. Therefore it is very important for
+them to be able to automatically test these code examples.</p>
+<p>mdBook supports a <code>test</code> command that will run all available tests in a book.
+At the moment, only rustdoc tests are supported, but this may be expanded upon
+in the future.</p>
+<a class="header" href="#disable-tests-on-a-code-block" id="disable-tests-on-a-code-block"><h4>Disable tests on a code block</h4></a>
+<p>rustdoc doesn't test code blocks which contain the <code>ignore</code> attribute:</p>
+<pre><code>```rust,ignore
+fn main() {}
+```
 </code></pre>
+<p>rustdoc also doesn't test code blocks which specify a language other than Rust:</p>
+<pre><code>```markdown
+**Foo**: _bar_
+```
+</code></pre>
+<p>rustdoc <em>does</em> test code blocks which have no language specified:</p>
+<pre><code>```
+This is going to cause an error!
+```
+</code></pre>
+<a class="header" href="#specify-a-directory-4" id="specify-a-directory-4"><h4>Specify a directory</h4></a>
+<p>The <code>test</code> command can take a directory as an argument to use as the book's
+root instead of the current working directory.</p>
+<pre><code class="language-bash">mdbook test path/to/book
+</code></pre>
+<a class="header" href="#a--library-path" id="a--library-path"><h4>--library-path</h4></a>
+<p>The <code>--library-path</code> (<code>-L</code>) option allows you to add directories to the library
+search path used by <code>rustdoc</code> when it builds and tests the examples. Multiple
+directories can be specified with multiple options (<code>-L foo -L bar</code>) or with a
+comma-delimited list (<code>-L foo,bar</code>).</p>
+<a class="header" href="#a--dest-dir-3" id="a--dest-dir-3"><h4>--dest-dir</h4></a>
+<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to change the output directory for
+the book. If not specified it will default to the value of the
+<code>build.build-dir</code> key in <code>book.toml</code>, or to <code>./book</code> relative to the book's
+root directory.</p>
 <a class="header" href="#the-clean-command" id="the-clean-command"><h1>The clean command</h1></a>
 <p>The clean command is used to delete the generated book and any other build
 artifacts.</p>
 <pre><code class="language-bash">mdbook clean
 </code></pre>
-<p>It will try to delete the built book. If a path is provided, it will be used.</p>
-<a class="header" href="#specify-a-directory-4" id="specify-a-directory-4"><h4>Specify a directory</h4></a>
-<p>Like <code>init</code>, the <code>clean</code> command can take a directory as an argument to use
-instead of the normal build directory.</p>
+<a class="header" href="#specify-a-directory-5" id="specify-a-directory-5"><h4>Specify a directory</h4></a>
+<p>The <code>clean</code> command can take a directory as an argument to use as the book's
+root instead of the current working directory.</p>
+<pre><code class="language-bash">mdbook clean path/to/book
+</code></pre>
+<a class="header" href="#a--dest-dir-4" id="a--dest-dir-4"><h4>--dest-dir</h4></a>
+<p>The <code>--dest-dir</code> (<code>-d</code>) option allows you to override the book's output
+directory, which will be deleted by this command. If not specified it
+will default to the value of the <code>build.build-dir</code> key in <code>book.toml</code>, or to
+<code>./book</code> relative to the book's root directory.</p>
 <pre><code class="language-bash">mdbook clean --dest-dir=path/to/book
 </code></pre>
 <p><code>path/to/book</code> could be absolute or relative.</p>
@@ -566,14 +622,17 @@ Since the original directory structure is maintained, it is useful to prepend re
 </ul>
 <a class="header" href="#handlebars-helpers" id="handlebars-helpers"><h2>Handlebars Helpers</h2></a>
 <p>In addition to the properties you can access, there are some handlebars helpers at your disposal.</p>
-<ol>
-<li>
-<a class="header" href="#toc" id="toc"><h3>toc</h3></a>
-<p>The toc helper is used like this</p>
-<pre><code class="language-handlebars">{{#toc}}{{/toc}}
-</code></pre>
-<p>and outputs something that looks like this, depending on the structure of your book</p>
-<pre><code class="language-html">&lt;ul class=&quot;chapter&quot;&gt;
+<a class="header" href="#a1-toc" id="a1-toc"><h3>1. toc</h3></a>
+<pre><code>The toc helper is used like this
+
+```handlebars
+{{#toc}}{{/toc}}
+```
+
+and outputs something that looks like this, depending on the structure of your book
+
+```html
+&lt;ul class=&quot;chapter&quot;&gt;
     &lt;li&gt;&lt;a href=&quot;link/to/file.html&quot;&gt;Some chapter&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;
         &lt;ul class=&quot;section&quot;&gt;
@@ -581,32 +640,36 @@ Since the original directory structure is maintained, it is useful to prepend re
         &lt;/ul&gt;
     &lt;/li&gt;
 &lt;/ul&gt;
-</code></pre>
-<p>If you would like to make a toc with another structure, you have access to the chapters property containing all the data.
-The only limitation at the moment is that you would have to do it with JavaScript instead of with a handlebars helper.</p>
-<pre><code class="language-html">&lt;script&gt;
+```
+
+If you would like to make a toc with another structure, you have access to the chapters property containing all the data.
+The only limitation at the moment is that you would have to do it with JavaScript instead of with a handlebars helper.
+
+```html
+&lt;script&gt;
 var chapters = {{chapters}};
 // Processing here
 &lt;/script&gt;
+```
 </code></pre>
-</li>
-<li>
-<a class="header" href="#previous--next" id="previous--next"><h3>previous / next</h3></a>
-<p>The previous and next helpers expose a <code>link</code> and <code>name</code> property to the previous and next chapters.</p>
-<p>They are used like this</p>
-<pre><code class="language-handlebars">{{#previous}}
+<a class="header" href="#a2-previous--next" id="a2-previous--next"><h3>2. previous / next</h3></a>
+<pre><code>The previous and next helpers expose a `link` and `name` property to the previous and next chapters.
+
+They are used like this
+
+```handlebars
+{{#previous}}
     &lt;a href=&quot;{{link}}&quot; class=&quot;nav-chapters previous&quot;&gt;
         &lt;i class=&quot;fa fa-angle-left&quot;&gt;&lt;/i&gt;
     &lt;/a&gt;
 {{/previous}}
+```
+
+The inner html will only be rendered if the previous / next chapter exists.
+Of course the inner html can be changed to your liking.
 </code></pre>
-<p>The inner html will only be rendered if the previous / next chapter exists.
-Of course the inner html can be changed to your liking.</p>
-</li>
-</ol>
 <hr />
-<p><em>If you would like me to expose other properties or helpers, please <a href="https://github.com/rust-lang-nursery/mdBook/issues">create a new issue</a>
-and I will consider it.</em></p>
+<p><em>If you would like other properties or helpers exposed, please <a href="https://github.com/rust-lang-nursery/mdBook/issues">create a new issue</a></em></p>
 <a class="header" href="#syntax-highlighting" id="syntax-highlighting"><h1>Syntax Highlighting</h1></a>
 <p>For syntax highlighting I use <a href="https://highlightjs.org">Highlight.js</a> with a custom theme.</p>
 <p>Automatic language detection has been turned off, so you will probably want to
@@ -718,19 +781,19 @@ When you use double backslashes in MathJax blocks (for example in commands such 
 </code></pre></pre>
 <a class="header" href="#including-files" id="including-files"><h2>Including files</h2></a>
 <p>With the following syntax, you can include files into your book:</p>
-<pre><code class="language-hbs">
+<pre><code class="language-hbs">{{#include file.rs}}
 </code></pre>
 <p>The path to the file has to be relative from the current source file.</p>
 <p>Usually, this command is used for including code snippets and examples. In this case, oftens one would include a specific part of the file e.g. which only contains the relevant lines for the example. We support four different modes of partial includes:</p>
-<pre><code class="language-hbs">
-
-
-
+<pre><code class="language-hbs">{{#include file.rs:2}}
+{{#include file.rs::10}}
+{{#include file.rs:2:}}
+{{#include file.rs:2:10}}
 </code></pre>
 <p>The first command only includes the second line from file <code>file.rs</code>. The second command includes all lines up to line 10, i.e. the lines from 11 till the end of the file are omitted. The third command includes all lines from line 2, i.e. the first line is omitted. The last command includes the excerpt of <code>file.rs</code> consisting of lines 2 to 10.</p>
 <a class="header" href="#inserting-runnable-rust-files" id="inserting-runnable-rust-files"><h2>Inserting runnable Rust files</h2></a>
 <p>With the following syntax, you can insert runnable Rust files into your book:</p>
-<pre><code class="language-hbs">
+<pre><code class="language-hbs">{{#playpen file.rs}}
 </code></pre>
 <p>The path to the Rust file has to be relative from the current source file.</p>
 <p>When play is clicked, the code snippet will be sent to the <a href="https://play.rust-lang.org/">Rust Playpen</a> to be compiled and run. The result is sent back and displayed directly underneath the code.</p>
@@ -823,7 +886,7 @@ explanation on the configuration system.</p>
 book is loaded and before it gets rendered, allowing you to update and mutate
 the book. Possible use cases are:</p>
 <ul>
-<li>Creating custom helpers like ``</li>
+<li>Creating custom helpers like <code>{{#include /path/to/file.md}}</code></li>
 <li>Updating links so <code>[some chapter](some_chapter.md)</code> is automatically changed
 to <code>[some chapter](some_chapter.html)</code> for the HTML renderer</li>
 <li>Substituting in latex-style expressions (<code>$$ \frac{1}{3} $$</code>) with their
@@ -1232,12 +1295,6 @@ the source code or ask questions.</p>
         <script src="theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
         
 
-        
-        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            var path_to_root = "";
-        </script>
-        
         
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
