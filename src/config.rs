@@ -385,6 +385,39 @@ impl Default for BookConfig {
     }
 }
 
+
+/// Additional files not normaly copied (like external images etc), which
+/// you want to add to the book output.
+/// In book.toml:
+/// ```toml
+/// [[build.additional-resources]]
+/// output-dir="img"
+/// src="../plantuml/*.png"
+///  
+/// [[build.additional-resources]]
+/// output-dir="foo"
+/// src="bar/*.xml"
+/// ```
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(default, rename_all = "kebab-case")]
+pub struct AdditionalResource {
+    /// Glob string for the files to add (e.g. "../foo/*.png"), path is
+    /// relative to book.toml
+    pub src: String,
+    /// Path relative to the book output dir
+    pub output_dir: PathBuf,
+}
+
+impl Default for AdditionalResource {
+    fn default() -> AdditionalResource {
+        AdditionalResource {
+            src: String::from(""),
+            output_dir: PathBuf::from("src"),
+        }
+    }
+}
+
+
 /// Configuration for the build procedure.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(default, rename_all = "kebab-case")]
@@ -397,6 +430,8 @@ pub struct BuildConfig {
     /// Should the default preprocessors always be used when they are
     /// compatible with the renderer?
     pub use_default_preprocessors: bool,
+    /// The additional resources to copy
+    pub additional_resources: Option<Vec<AdditionalResource>>
 }
 
 impl Default for BuildConfig {
@@ -405,6 +440,7 @@ impl Default for BuildConfig {
             build_dir: PathBuf::from("book"),
             create_missing: true,
             use_default_preprocessors: true,
+            additional_resources: None
         }
     }
 }
@@ -573,6 +609,14 @@ mod tests {
         create-missing = false
         use-default-preprocessors = true
 
+        [[build.additional-resources]]
+        src="foo*.*"
+        output-dir="bar"
+
+        [[build.additional-resources]]
+        src="chuck*.*"
+        output-dir="norris"
+
         [output.html]
         theme = "./themedir"
         default-theme = "rust"
@@ -607,6 +651,16 @@ mod tests {
             build_dir: PathBuf::from("outputs"),
             create_missing: false,
             use_default_preprocessors: true,
+            additional_resources: Some(vec![
+                    AdditionalResource {
+                        src: String::from("foo*.*"),
+                        output_dir: PathBuf::from("bar"),
+                    },
+                    AdditionalResource {
+                        src: String::from("chuck*.*"),
+                        output_dir: PathBuf::from("norris"),
+                    }                
+                ]),
         };
         let playpen_should_be = Playpen {
             editable: true,
@@ -712,6 +766,7 @@ mod tests {
             build_dir: PathBuf::from("my-book"),
             create_missing: true,
             use_default_preprocessors: true,
+            additional_resources: None,
         };
 
         let html_should_be = HtmlConfig {

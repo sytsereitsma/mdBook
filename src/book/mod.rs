@@ -151,11 +151,25 @@ impl MDBook {
     pub fn build(&self) -> Result<()> {
         info!("Book building has started");
 
+        self.copy_additional_resources()?;
+
         for renderer in &self.renderers {
             self.execute_build_process(&**renderer)?;
         }
 
         Ok(())
+    }
+
+    /// Copy the additional resources specified in the config
+    fn copy_additional_resources(&self) -> Result <()> {
+        match &self.config.build.additional_resources {
+            Some(additional_resources) => {
+                warn!("ADDITIONALS {:?}", additional_resources);
+            },
+            None => (),
+        }
+        
+        Ok(())        
     }
 
     /// Run the entire build process for a particular `Renderer`.

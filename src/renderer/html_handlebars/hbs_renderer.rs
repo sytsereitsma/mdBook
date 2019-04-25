@@ -1,4 +1,4 @@
-use book::{Book, BookItem, Chapter};
+use book::{Book, BookItem};
 use config::{Config, HtmlConfig, Playpen};
 use errors::*;
 use renderer::html_handlebars::helpers;
@@ -661,6 +661,8 @@ struct RenderItemContext<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use book::Chapter;
+
 
     #[test]
     fn original_build_header_links() {
