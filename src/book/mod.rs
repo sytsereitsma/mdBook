@@ -4,20 +4,23 @@
 //! For examples on using `MDBook`, consult the [top-level documentation][1].
 //!
 //! [1]: ../index.html
-
 mod book;
 mod init;
 mod summary;
-
 pub use self::book::{load_book, Book, BookItem, BookItems, Chapter};
 pub use self::init::BookBuilder;
 pub use self::summary::{parse_summary, Link, SectionNumber, Summary, SummaryItem};
-
 use std::io::Write;
 use std::path::PathBuf;
 use std::process::Command;
 use tempfile::Builder as TempFileBuilder;
 use toml::Value;
+use config::AdditionalResource;
+
+extern crate glob;
+use book::glob::glob;
+use std::fs;
+
 
 use errors::*;
 use preprocess::{
@@ -151,11 +154,11 @@ impl MDBook {
     pub fn build(&self) -> Result<()> {
         info!("Book building has started");
 
-        self.copy_additional_resources()?;
-
         for renderer in &self.renderers {
             self.execute_build_process(&**renderer)?;
         }
+
+        self.copy_additional_resources()?;
 
         Ok(())
     }
@@ -164,11 +167,46 @@ impl MDBook {
     fn copy_additional_resources(&self) -> Result <()> {
         match &self.config.build.additional_resources {
             Some(additional_resources) => {
-                warn!("ADDITIONALS {:?}", additional_resources);
+                for res in additional_resources {
+                    self.copy_additional_resource(&res)?;
+                }
             },
             None => (),
         }
         
+        Ok(())        
+    }
+
+    /// Copy the files from a single AdditionalResource entry in config to the book dir
+    /// The found files are copied by name only, the original directory structure
+    /// flattened
+    fn copy_additional_resource(&self, res : &AdditionalResource) -> Result <()> {
+        let mut dest_dir = PathBuf::from (&self.config.build.build_dir);
+        dest_dir.push(&res.output_dir);
+
+        debug!("Creating: {}", dest_dir.display());        
+        match fs::create_dir_all(&dest_dir) {
+            Ok(_) => (),
+            Err(e) => panic!("Failed to create output directory {} for additional resources ({})", dest_dir.display(), e)
+        }
+
+        for entry in glob(res.src.as_str()).expect("Failed to read glob pattern") {
+            match entry {
+                Ok(path) => {
+                    let file_name = path.file_name().unwrap();
+                    let mut dest_file = PathBuf::from (&dest_dir);
+                    dest_file.push(&file_name);
+
+                    debug!("Copying {} to {}", path.display(), dest_file.display());
+                    match fs::copy(&path, &dest_file) {
+                        Ok(_) => (),
+                        Err(e) => warn!("Failed to copy {} to {} ({})", path.display(), dest_file.display(), e)
+                    }
+                },
+                Err(e) => println!("{:?}", e),
+            }
+        }
+
         Ok(())        
     }
 

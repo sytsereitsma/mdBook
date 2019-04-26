@@ -402,7 +402,9 @@ impl Default for BookConfig {
 #[serde(default, rename_all = "kebab-case")]
 pub struct AdditionalResource {
     /// Glob string for the files to add (e.g. "../foo/*.png"), path is
-    /// relative to book.toml
+    /// relative to book root dir. The files found by the pattern
+    /// are flattened in the output dir (i.e. the directory structure
+    /// is not copied, only the files)
     pub src: String,
     /// Path relative to the book output dir
     pub output_dir: PathBuf,
