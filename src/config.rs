@@ -390,11 +390,11 @@ impl Default for BookConfig {
 /// you want to add to the book output.
 /// In book.toml:
 /// ```toml
-/// [[build.additional-resources]]
+/// [[output.html.additional-resources]]
 /// output-dir="img"
 /// src="../plantuml/*.png"
 ///  
-/// [[build.additional-resources]]
+/// [[output.html.additional-resources]]
 /// output-dir="foo"
 /// src="bar/*.xml"
 /// ```
@@ -432,8 +432,6 @@ pub struct BuildConfig {
     /// Should the default preprocessors always be used when they are
     /// compatible with the renderer?
     pub use_default_preprocessors: bool,
-    /// The additional resources to copy
-    pub additional_resources: Option<Vec<AdditionalResource>>
 }
 
 impl Default for BuildConfig {
@@ -441,8 +439,7 @@ impl Default for BuildConfig {
         BuildConfig {
             build_dir: PathBuf::from("book"),
             create_missing: true,
-            use_default_preprocessors: true,
-            additional_resources: None
+            use_default_preprocessors: true
         }
     }
 }
@@ -485,6 +482,9 @@ pub struct HtmlConfig {
     /// FontAwesome icon class to use for the Git repository link.
     /// Defaults to `fa-github` if `None`.
     pub git_repository_icon: Option<String>,
+
+    /// The additional resources to copy
+    pub additional_resources: Option<Vec<AdditionalResource>>
 }
 
 impl HtmlConfig {
@@ -611,14 +611,6 @@ mod tests {
         create-missing = false
         use-default-preprocessors = true
 
-        [[build.additional-resources]]
-        src="foo*.*"
-        output-dir="bar"
-
-        [[build.additional-resources]]
-        src="chuck*.*"
-        output-dir="norris"
-
         [output.html]
         theme = "./themedir"
         default-theme = "rust"
@@ -627,6 +619,14 @@ mod tests {
         additional-css = ["./foo/bar/baz.css"]
         git-repository-url = "https://foo.com/"
         git-repository-icon = "fa-code-fork"
+
+        [[output.html.additional-resources]]
+        src="foo*.*"
+        output-dir="bar"
+
+        [[output.html.additional-resources]]
+        src="chuck*.*"
+        output-dir="norris"
 
         [output.html.playpen]
         editable = true
@@ -653,16 +653,6 @@ mod tests {
             build_dir: PathBuf::from("outputs"),
             create_missing: false,
             use_default_preprocessors: true,
-            additional_resources: Some(vec![
-                    AdditionalResource {
-                        src: String::from("foo*.*"),
-                        output_dir: PathBuf::from("bar"),
-                    },
-                    AdditionalResource {
-                        src: String::from("chuck*.*"),
-                        output_dir: PathBuf::from("norris"),
-                    }                
-                ]),
         };
         let playpen_should_be = Playpen {
             editable: true,
@@ -677,6 +667,16 @@ mod tests {
             playpen: playpen_should_be,
             git_repository_url: Some(String::from("https://foo.com/")),
             git_repository_icon: Some(String::from("fa-code-fork")),
+            additional_resources: Some(vec![
+                    AdditionalResource {
+                        src: String::from("foo*.*"),
+                        output_dir: PathBuf::from("bar"),
+                    },
+                    AdditionalResource {
+                        src: String::from("chuck*.*"),
+                        output_dir: PathBuf::from("norris"),
+                    }                
+                ]),
             ..Default::default()
         };
 
@@ -768,7 +768,6 @@ mod tests {
             build_dir: PathBuf::from("my-book"),
             create_missing: true,
             use_default_preprocessors: true,
-            additional_resources: None,
         };
 
         let html_should_be = HtmlConfig {

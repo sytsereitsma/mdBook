@@ -1,5 +1,5 @@
 use book::{Book, BookItem};
-use config::{Config, HtmlConfig, Playpen};
+use config::{AdditionalResource, Config, HtmlConfig, Playpen};
 use errors::*;
 use renderer::html_handlebars::helpers;
 use renderer::{RenderContext, Renderer};
@@ -14,6 +14,9 @@ use std::path::{Path, PathBuf};
 use handlebars::Handlebars;
 use regex::{Captures, Regex};
 use serde_json;
+
+extern crate glob;
+use self::glob::glob;
 
 #[derive(Default)]
 pub struct HtmlHandlebars;
@@ -77,11 +80,7 @@ impl HtmlHandlebars {
         Ok(())
     }
 
-    fn render_content(
-        &self,
-        ctx: &RenderItemContext,
-        filepath: &Path
-    ) -> Result <()> {
+    fn render_content(&self, ctx: &RenderItemContext, filepath: &Path) -> Result<()> {
         let rendered = ctx.handlebars.render("index", &ctx.data)?;
         let rendered = self.post_process(rendered, &ctx.html_config.playpen);
 
@@ -387,9 +386,65 @@ impl Renderer for HtmlHandlebars {
 
         // Copy all remaining files
         utils::fs::copy_files_except_ext(&src_dir, &destination, true, &["md"])?;
+        copy_additional_resources(&html_config.additional_resources, &destination)?;
 
         Ok(())
     }
+}
+
+/// Copy the additional resources specified in the config
+fn copy_additional_resources(
+    resources: &Option<Vec<AdditionalResource>>,
+    destination: &PathBuf,
+) -> Result<()> {
+
+    match resources {
+        Some(additional_resources) => {
+            for res in additional_resources {
+                copy_additional_resource(&res, &destination)?;
+            }
+        }
+        None => (), //Optional, so no issue here
+    }
+
+    Ok(())
+}
+
+/// Copy the files from a single AdditionalResource entry in config to the book dir
+/// The found files are copied by name only, the original directory structure
+/// flattened
+fn copy_additional_resource(res: &AdditionalResource, destination: &PathBuf) -> Result<()> {
+    let dest_dir = destination.join(&res.output_dir);
+
+    match fs::create_dir_all(&dest_dir) {
+        Ok(_) => debug!("Created: {}", dest_dir.display()),
+        Err(e) => {
+            error!(
+                "Failed to create output directory {} for additional resources.",
+                dest_dir.display()
+            );
+            return Err(e.into());
+        }
+    }
+
+    let found_files = glob(res.src.as_str())
+        .expect("Failed to read glob pattern for additional resource");
+    for path in found_files.filter_map(std::result::Result::ok) {
+        let file_name = path.file_name().unwrap();
+        let dest_file = dest_dir.join(file_name);
+
+        match fs::copy(&path, &dest_file) {
+            Ok(_) => debug!("Copied {} to {}", path.display(), dest_file.display()),
+            Err(e) => warn!(
+                "Failed to copy {} to {} ({})",
+                path.display(),
+                dest_file.display(),
+                e
+            ),
+        }
+    }
+
+    Ok(())
 }
 
 fn make_data(
@@ -661,8 +716,6 @@ struct RenderItemContext<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use book::Chapter;
-
 
     #[test]
     fn original_build_header_links() {
@@ -706,6 +759,8 @@ mod tests {
 
     impl<'a> PathTestContext<'a> {
         pub fn new(path: String, dummy_handlebars: &'a Handlebars) -> PathTestContext<'a> {
+            use book::Chapter;
+
             PathTestContext {
                 render_context: RenderItemContext {
                     handlebars: dummy_handlebars,
@@ -815,5 +870,64 @@ mod tests {
             "<h1>Some curly ‘quotes’?</h1>\n",
             html_handlebars.render_print_content(&content, &path, &html_config)
         );
+    }
+
+    #[test]
+    fn test_copy_additional_resource_fails_to_create_output_dir() {
+        use tempfile::NamedTempFile;
+
+        // Create a file with the same name as the directory we're
+        // about to create. This will prevent the system from creating
+        // the directory
+        let mask_file = NamedTempFile::new().expect("Failed to create dir mask file");
+
+        let destination = PathBuf::from(&mask_file.path());
+        let resource = AdditionalResource {
+            src: String::from("*.foo"),
+            output_dir: PathBuf::from(&destination),
+        };
+
+        match copy_additional_resource(&resource, &destination) {
+            Ok(_) => assert!(
+                false,
+                "Expected a failure when creating the output dir"
+            ),
+            //Error is OS dependant, so not much use in checking the error text
+            Err(_e) => (),
+        }
+    }
+
+    #[test]
+    fn test_copy_additional_resource() {
+        use tempfile::tempdir;
+
+        let src_dir = tempdir().unwrap();
+        let output_dir = tempdir().unwrap();
+
+        let destination = PathBuf::from(&output_dir.path());
+        let resource = AdditionalResource {
+            src: String::from(src_dir.path().join("*.txt").to_str().unwrap()),
+            output_dir: PathBuf::from(&destination),
+        };
+
+        //Create some files
+        fs::File::create(src_dir.path().join("i_will_not_be_copied.doc")).unwrap();
+        fs::File::create(src_dir.path().join("i_will_be_copied.txt")).unwrap();
+        fs::File::create(src_dir.path().join("i_will_be_copied_too.txt")).unwrap();
+
+        match copy_additional_resource(&resource, &destination) {
+            Ok(_) => {
+                //Just test the most likely candidates have been copied
+                let test_file = destination.join("i_will_be_copied.txt");
+                assert!(test_file.is_file(), "Expected 'i_will_be_copied.txt' to be copied");
+
+                let test_file = destination.join("i_will_be_copied_too.txt");
+                assert!(test_file.is_file(), "Expected 'i_will_be_copied_too.txt' to be copied");
+
+                let test_file = destination.join("i_will_not_be_copied.doc");
+                assert!(!test_file.is_file(), "Did not expect 'i_will_not_be_copied.doc' to be copied");
+            },
+            Err(e) => assert!(false, "Failed to copy additional resources ({})", e)
+        }
     }
 }
