@@ -411,7 +411,7 @@ fn copy_additional_resources(
 }
 
 /// Copy the files from a single AdditionalResource entry in config to the book dir
-/// The found files are copied by name only, the original directory structure
+/// The found files are copied by name only, the original directory structure is
 /// flattened
 fn copy_additional_resource(res: &AdditionalResource, destination: &PathBuf) -> Result<()> {
     let dest_dir = destination.join(&res.output_dir);
