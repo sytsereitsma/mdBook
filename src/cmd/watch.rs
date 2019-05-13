@@ -55,9 +55,9 @@ fn watch_additional_resources(book: &MDBook, watcher : &mut impl notify::Watcher
     use self::glob::glob;
     use self::notify::RecursiveMode::NonRecursive;
 
-    let html_config = book.config.html_config().unwrap_or_default();
-    match &html_config.additional_resources {
-        Some(additional_resources) => {
+    book.config.html_config()
+        .and_then(|html_config| html_config.additional_resources)
+        .map(|additional_resources| {
             for res in additional_resources {
                 let found_files = glob(res.src.as_str())
                     .expect("Failed to read glob pattern for additional resource");
@@ -66,9 +66,7 @@ fn watch_additional_resources(book: &MDBook, watcher : &mut impl notify::Watcher
                     debug!("Watching {:?}", path);
                 }
             }
-        }
-        None => (), //Optional, so no issue here
-    }
+        });
 }
 
 /// Calls the closure when a book source file is changed, blocking indefinitely.
